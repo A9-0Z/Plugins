@@ -28,14 +28,13 @@ class PMTouchBlock implements Plugin{
 			'BlockId' => '246',
 			'MsgWhenGiven' => 'You have been awarded 500 PM !',
 		));
-		$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
-			'issuer' => 'PMTouchBlock',
-			'username' => 'A9_0Z',
-			'method' => 'grant',
-			'amount' => 500
-		));
-		$this->items = $this->api->plugin->readYAML($this->path . "items.yml");
-		$this->block = (int)$this->config->get('BlockId');
+		$data = array(
+			'issuer' => 'MoneySetTo600Plugin',
+			'username' => 'MinecrafterJPN',
+			'method' => 'set',
+			'amount' => 600);
+			
+			$this->api->dhandle("money.handle", $data);
     }
 	
     public function touchHandler($data){
