@@ -17,7 +17,7 @@ Small Changelog
 1.1: Easier to configuer
 */
 
-class PMTouchBlockt implements Plugin{
+class PMTouchBlock implements Plugin{
     private $api;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
@@ -31,10 +31,10 @@ class PMTouchBlockt implements Plugin{
 		));
 		$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
 			$data = array(
-'issuer' => 'MoneySetTo600Plugin',
-'username' => 'MinecrafterJPN',
-'method' => 'set',
-'amount' => 600
+'issuer' => 'PMTouchBlock',
+'username' => $data["player"]->username,
+'method' => 'grant',
+'amount' => 100
 );
 $this->api->dhandle("money.handle", $data);
 		));
