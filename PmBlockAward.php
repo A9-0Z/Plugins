@@ -30,7 +30,7 @@ class PMTouchBlock implements Plugin{
 		));
 		$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
 			'issuer' => 'PMTouchBlock',
-			'username' => $data["player"],
+			'username' => 'A9_0Z',
 			'method' => 'grant',
 			'amount' => 500
 		));
