@@ -14,7 +14,6 @@ apiversion=9
 Small Changelog
 ===============
 1.0: Initial release
-1.1: Easier to configuer
 */
 
 class PMTouchBlock implements Plugin{
@@ -50,12 +49,6 @@ class PMTouchBlock implements Plugin{
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
         }
     }
-	
-    public function __destruct(){
-	
-    }
-}
- 
 	
     public function __destruct(){
 	
