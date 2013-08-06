@@ -24,19 +24,16 @@ class PMTouchBlock implements Plugin{
     }
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "touchHandler"));
-  	$this->path = $this->api->plugin->configPath($this);
+		$this->path = $this->api->plugin->configPath($this);
 		$this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 			'BlockId' => '246',
-			'MsgWhenGiven' => 'You have been awarded 100 PM !',
+			'MsgWhenGiven' => 'You have been awarded 500 PM !',
 		));
 		$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
-			$data = array(
-'issuer' => 'PMTouchBlock',
-'username' => $data["player"]->username,
-'method' => 'grant',
-'amount' => 100
-);
-$this->api->dhandle("money.handle", $data);
+			'issuer' => 'MoneySetTo600Plugin',
+			'username' => $data["player"],
+			'method' => 'grant',
+			'amount' => 600
 		));
 		$this->items = $this->api->plugin->readYAML($this->path . "items.yml");
 		$this->block = (int)$this->config->get('BlockId');
@@ -53,6 +50,12 @@ $this->api->dhandle("money.handle", $data);
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
         }
     }
+	
+    public function __destruct(){
+	
+    }
+}
+ 
 	
     public function __destruct(){
 	
