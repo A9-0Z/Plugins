@@ -29,10 +29,10 @@ class PMTouchBlock implements Plugin{
 			'MsgWhenGiven' => 'You have been awarded 500 PM !',
 		));
 		$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
-			'issuer' => 'MoneySetTo600Plugin',
+			'issuer' => 'PMTouchBlock',
 			'username' => $data["player"],
 			'method' => 'grant',
-			'amount' => 600
+			'amount' => 500
 		));
 		$this->items = $this->api->plugin->readYAML($this->path . "items.yml");
 		$this->block = (int)$this->config->get('BlockId');
