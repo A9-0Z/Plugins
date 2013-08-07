@@ -23,13 +23,13 @@ class PMTouchBlock implements Plugin{
     }
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "touchHandler"));
-  	$this->path = $this->api->plugin->configPath($this);
+		$this->path = $this->api->plugin->configPath($this);
 		$this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 			'BlockId' => '246',
-			'MsgWhenGiven' => 'You have been awarded 500 PM !',
-			'MsgWhenGiven2' => 'Plugin Failed'
+			'MsgWhenGiven' => 'Your kit has been given !',
 		));
-		$this->block = (int)$this->config->get('BlockId');
+	
+		$this->block = (int)$this->config->get('BlockId')
     }
 
     public function touchHandler($data){
@@ -41,13 +41,10 @@ class PMTouchBlock implements Plugin{
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
 			$this->api->console->run("sudo $player spawn");
 			}
-	else {
-	$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2'), $username);	
-	}		
+		
         }
     }
 
     public function __destruct(){
 
     }
-}
