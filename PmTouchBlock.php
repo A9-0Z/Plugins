@@ -41,9 +41,10 @@ class PMTouchBlock implements Plugin{
 			$this->api->console->run("sudo $player spawn");
 			}
 		
-        }
+        
     }
 
     public function __destruct(){
 
     }
+}
