@@ -29,21 +29,20 @@ class PMTouchBlock implements Plugin{
 			'MsgWhenGiven' => 'You have been awarded 500 PM !',
 		));
 		$data = array(
-			'issuer' => 'MoneySetTo600Plugin',
-			'username' => 'MinecrafterJPN',
-			'method' => 'set',
-			'amount' => 600);
+			'issuer' => 'PMTouchBlock',
+			'username' => 'usrnme',
+			'method' => 'grant',
+			'amount' => 500);
 			
-			$this->api->dhandle("money.handle", $data);
+			$this->api->addHandler("player.block.touch", $data);
     }
 	
-    public function touchHandler($data){
-        $target = $data["target"];
+    public function touchHandler($data1){
+        $target = $data1["target"];
         if ($target->getID() === $this->block){
-			$username = $data["player"]->username;
+			$username = $data1["player"]->usrnme;
 			$player = $this->api->player->get($username);
-			foreach($this->items as $id => $count){
-				$player->addItem((int)$id, 0, (int)$count);
+			
 			}
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
         }
