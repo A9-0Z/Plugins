@@ -11,7 +11,7 @@ apiversion=9
 */
 
 /* 
-Small Changelog
+  Changelog
 ===============
 1.0: Initial release
 */
@@ -29,7 +29,7 @@ class PMTouchBlock implements Plugin{
 			'MsgWhenGiven' => 'Your kit has been given !',
 		));
 	
-		$this->block = (int)$this->config->get('BlockId')
+		$this->block = (int)$this->config->get('BlockId');
     }
 
     public function touchHandler($data){
