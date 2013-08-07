@@ -27,24 +27,26 @@ class PMTouchBlock implements Plugin{
 		$this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 			'BlockId' => '246',
 			'MsgWhenGiven' => 'You have been awarded 500 PM !',
-		));
-		$data = array(
+			'MsgWhenGiven2' => 'Plugin Failed'
 			'issuer' => 'PMTouchBlock',
 			'username' => 'usrnme',
 			'method' => 'grant',
-			'amount' => 500);
-			
-			$this->api->addHandler("player.block.touch", $data);
+			'amount' => 500,
+		));
+		$this->block = (int)$this->config->get('BlockId');
     }
 	
-    public function touchHandler($data1){
-        $target = $data1["target"];
+    public function touchHandler($data){
+        $target = $data["target"];
         if ($target->getID() === $this->block){
-			$usernameA = $data1["player"]->usrnme;
-			$player = $this->api->player->get($usernameA);
+			$username = $data["usrnme"]->username;
+			$player = $this->api->player->get($username);
 			$this->api->dhandle("player.block.touch", $data)
+			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
 			}
-			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $usernameA);
+	else {
+	$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2'), $username);	
+	}		
         }
     }
 	
