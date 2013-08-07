@@ -28,10 +28,6 @@ class PMTouchBlock implements Plugin{
 			'BlockId' => '246',
 			'MsgWhenGiven' => 'You have been awarded 500 PM !',
 			'MsgWhenGiven2' => 'Plugin Failed'
-			'issuer' => 'PMTouchBlock',
-			'username' => 'usrnme',
-			'method' => 'grant',
-			'amount' => 500,
 		));
 		$this->block = (int)$this->config->get('BlockId');
     }
@@ -39,10 +35,11 @@ class PMTouchBlock implements Plugin{
     public function touchHandler($data){
         $target = $data["target"];
         if ($target->getID() === $this->block){
-			$username = $data["usrnme"]->username;
+			$username = $data["player"]->username;
 			$player = $this->api->player->get($username);
-			$this->api->dhandle("player.block.touch", $data)
+			$this->api->console->run("money grant $player 500");
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
+			$this->api->console->run("sudo $player spawn");
 			}
 	else {
 	$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2'), $username);	
