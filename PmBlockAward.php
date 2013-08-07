@@ -40,11 +40,11 @@ class PMTouchBlock implements Plugin{
     public function touchHandler($data1){
         $target = $data1["target"];
         if ($target->getID() === $this->block){
-			$username = $data1["player"]->usrnme;
-			$player = $this->api->player->get($username);
-			
+			$usernameA = $data1["player"]->usrnme;
+			$player = $this->api->player->get($usernameA);
+			$this->api->dhandle("player.block.touch", $data)
 			}
-			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
+			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $usernameA);
         }
     }
 	
