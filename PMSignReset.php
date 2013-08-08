@@ -25,7 +25,7 @@ class PMSignReset implements Plugin{
         $this->api->addHandler("player.block.touch", array($this, "touchHandler"));
   	$this->path = $this->api->plugin->configPath($this);
 		$this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
-			'BlockId' => '246',
+			'BlockId' => '255',
 			'MsgWhenGiven' => 'Signs reset !',
 		));
 
