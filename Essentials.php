@@ -463,11 +463,5 @@ class Essentials implements Plugin{
 		return $output;
 	}
 	
-	public function getMessage($msg, $params = array("%1", "%2", "%3", "%4")){
-		$msgs = array_merge($this->lang->get("Default"), $this->lang->get("Essentials"));
-		if(!isset($msgs[$msg])){
-			return $this->getMessage("noMessages", array($msg));
-		}
-		return str_replace(array("%1", "%2", "%3", "%4"), array($params[0], $params[1], $params[2], $params[3]), $msgs[$msg])."\n";
-	}
+
 }
