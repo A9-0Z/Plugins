@@ -3,7 +3,7 @@
 /*
 __PocketMine Plugin__
 name=PMSignReset
-description=Tap a specific block to receive PM !
+description=Tap a specific block to reset signs!
 version=1.0
 author=A9_0Z
 class=PMSignReset
@@ -36,8 +36,8 @@ class PMSignReset implements Plugin{
         if ($target->getID() === $this->block){
 			$username = $data["player"]->username;
 			$player = $this->api->player->get($username);
-      $sign = getByID("Sign");
-      spawnToAll($signs);
+      $signs = $this->tiles->getByID("Sign");
+      $this->spawnToAll($signs);
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
 			}
 
