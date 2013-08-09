@@ -36,7 +36,7 @@ class PMSignReset implements Plugin{
         if ($target->getID() === $this->block){
 			$username = $data["player"]->username;
 			$player = $this->api->player->get($username);
-       $signs = $this->api->tiles->getByID("Sign");
+       $signs = $this->api->tile->getByID("Sign");
        safe_var_dump($signs);
        $this->api->tile->spawnToAll($signs);
 			$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
