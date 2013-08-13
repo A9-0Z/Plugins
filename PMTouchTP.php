@@ -48,23 +48,17 @@ $player = $this->api->player->get($username);
 $this->api->console->run("tp $player w:Skyblock");
 $this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
 }
-
-        
-    }
-    
-
-    public function touchHandler($data){
-        $target = $data["target"];
+$target = $data["target"];
         if ($target->getID() === $this->block){
 $username = $data["player"]->username;
 $player = $this->api->player->get($username);
 $this->api->console->run("tp $player w:Nether");
 $this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2'), $username);
 }
-
         
     }
     
+
     	public function defaultCommands($cmd, $params, $issuer, $alias){
 $output = "";
 switch($cmd){
