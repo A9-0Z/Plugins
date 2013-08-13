@@ -37,7 +37,8 @@ $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
 'MsgWhenGiven2' => 'Welcome to Nether Arena !',));
 $this->readConfig();
-$this->block = (int)$this->config->get('BlockId'); }
+$this->block = (int)$this->config->get('BlockId');
+$this->block = (int)$this->config->get('BlockId2');}
 
     public function touchHandler($data){
         $target = $data["target"];
@@ -51,8 +52,6 @@ $this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
         
     }
     
-
-$this->block = (int)$this->config->get('BlockId2'); }
 
     public function touchHandler($data){
         $target = $data["target"];
