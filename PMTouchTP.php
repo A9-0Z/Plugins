@@ -68,10 +68,11 @@ $output .= "Please run this command in-game.\n";
 break;
 }
 if($this->data[$issuer->iusername]->exists("lobby")){
-$this->api->console->run("tp $issuer w:world");
-}
-    public function __destruct(){
+$this->api->console->run("tp $issuer w:world");}
+  }
+    	}
+public function __destruct(){
 
     }
-}
+    	}
 
