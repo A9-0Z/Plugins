@@ -27,11 +27,6 @@ public function __construct(ServerAPI $api, $server = false){
 $this->api = $api;
 $this->groupmanager = false;
 }
-
-    private $api;
-    public function __construct(ServerAPI $api, $server = false){
-        $this->api = $api;
-    }
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "touchHandler"));
 $this->path = $this->api->plugin->configPath($this);
