@@ -21,16 +21,14 @@ class PMTouchTP implements Plugin{
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
     }
-   public function init(){
+         public function init(){
         $this->api->addHandler("player.block.touch", array($this, "touchHandler"));
-$this->path = $this->api->plugin->configPath($this);
-$this->api->console->register("lobby", "", array($this, "defaultCommands"));
-$this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
+		  $this->path = $this->api->plugin->configPath($this);
+		  $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 'BlockId' => '155',
 'BlockId2' => '246',
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
 'MsgWhenGiven2' => 'Welcome to Nether Arena !',)
-$this->readConfig();
 );
 $this->block = (int)$this->config->get('BlockId'); }
 
