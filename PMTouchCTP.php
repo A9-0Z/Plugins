@@ -25,7 +25,7 @@ $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 'BlockId' => '155',
 'BlockId2' => '246',
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
-'MsgWhenGiven2' => 'Welcome to Nether Arena !',);
+'MsgWhenGiven2' => 'Welcome to Nether Arena !',)
 $this->readConfig();
 );
 
