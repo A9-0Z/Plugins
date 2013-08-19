@@ -26,9 +26,8 @@ $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
 'BlockId2' => '246',
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
 'MsgWhenGiven2' => 'Welcome to Nether Arena !',)
-$this->readConfig();
 );
-
+$this->readConfig();
 $this->block = (int)$this->config->get('BlockId'); }
 
     public function touchHandler($data){
