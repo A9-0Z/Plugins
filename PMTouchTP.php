@@ -40,14 +40,16 @@ $this->block2 = (int)$this->config->get('BlockId2');}
         if ($target->getID() === $this->block){
 $username = $data["player"]->username;
 $player = $this->api->player->get($username);
-$this->api->console->run("tp $player w:Skyblock");
-$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven', 'MsgWhenGiven3'), $username);
+$this->api->console->run("tp $player 64 64 64");
+$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven'), $username);
+$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven3'), $username);
 }
         if ($target->getID() === $this->block2){
 $username = $data["player"]->username;
 $player = $this->api->player->get($username);
-$this->api->console->run("tp $player w:Nether");
-$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2', 'MsgWhenGiven3'), $username);
+$this->api->console->run("tp $player -64 -64 64");
+$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven2'), $username);
+$this->api->chat->sendTo(false, $this->config->get('MsgWhenGiven3'), $username);
 }
         
     }
