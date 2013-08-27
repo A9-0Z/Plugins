@@ -61,17 +61,24 @@ str_replace($username, '', $Blue);
 			   };
 			   
 			   foreach($this->items as $id => $count){
-				$username->addItem((int)$id, 0, (int)$count);
+				$username->addItem((int)$id, 0, (int)$count);}
 			   break;
 			   
 			case "player.interact":
 			   $target = $this->api->entity->get($data["target"]);
-                           if(stristr($Blue, $target) === TRUE){ $tarteam
-                           $plateam = 
-                           if($tarteam = ){
+                           if(stristr($Blue, $target) === TRUE){ $tarteam = 'Blue'; }
+                           if(stristr($Red, $target) === TRUE){ $tarteam = 'Red'; }
+                           $username = $data["player"]->username;
+                           if(stristr($Red, $username) === TRUE){ $plateam = 'Red'; }
+                           if(stristr($Blue, $username) === TRUE){ $plateam = 'Blue'; }
+                           if($tarteam === $plateam ){
                            return false;
                            }
-			   
-			   
-         unset($Red, $Blue);
+		}
+	}
+			   break;
+	 public function __destruct(){
+unset($Red, $Blue);
+    }
+ }
          ?>
