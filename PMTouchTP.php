@@ -31,15 +31,14 @@ class PMTouchTP implements Plugin{
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
 'MsgWhenGiven2' => 'Welcome to Nether Arena !',
 'MsgWhenGiven3' => 'Please stand still until world loads !',
-'MsgWhenGiven4' => 'Items Reset !',
-
-$this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
+'MsgWhenGiven4' => 'Items Reset !',);
+                   $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
 			'262' => '10',
 			'261' => '1',
 			'272' => '1',
 			'303' => '1',
-			'272' => '1',)
-);
+			'272' => '1',));
+
 $this->items = $this->api->plugin->readYAML($this->path . "items.yml");
 $this->block = (int)$this->config->get('BlockId');
 $this->block2 = (int)$this->config->get('BlockId2');
