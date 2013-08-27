@@ -31,7 +31,7 @@ class PMTouchTP implements Plugin{
 'MsgWhenGiven' => 'Welcome to Skyblock Arena !',
 'MsgWhenGiven2' => 'Welcome to Nether Arena !',
 'MsgWhenGiven3' => 'Please stand still until world loads !',
-'MsgWhenGiven4' => 'Items Reset !',);
+'MsgWhenGiven4' => 'Items Reset !',));
                    $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
 			'262' => '10',
 			'261' => '1',
@@ -42,8 +42,8 @@ class PMTouchTP implements Plugin{
 $this->items = $this->api->plugin->readYAML($this->path . "items.yml");
 $this->block = (int)$this->config->get('BlockId');
 $this->block2 = (int)$this->config->get('BlockId2');
-$this->block3 = (int)$this->config->get('BlockId3');}
-$this->block4 = (int)$this->config->get('BlockId4');
+$this->block3 = (int)$this->config->get('BlockId3');
+$this->block4 = (int)$this->config->get('BlockId4');}
 
     public function touchHandler($data){
         $target = $data["target"];
