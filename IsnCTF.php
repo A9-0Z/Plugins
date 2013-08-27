@@ -22,7 +22,43 @@ class IsnCTF implements Plugin{
         $this->api = $api;
     }
          public function init(){
-         $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
-         'Blue' =>
-         ,'Red'  =>
-         } ?>
+         $Red = 'A9_0Z';
+         $Blue = 'iamadpond';
+         $RedCount = count($Red);
+         $BlueCount = count($Blue);
+         $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
+			'272' => '1',
+			'303' => '1',
+			'320' => '5'));
+			$this->items = $this->api->plugin->readYAML($this->path . "items.yml");
+         }
+         
+         
+   public function eventHandler($data, $event)
+	{
+		switch ($event) {
+			case "player.join":
+			   $username = $data["player"]->username;
+			   if(stristr($Red, $username) === TRUE){
+str_replace($username, '', $Red);
+}
+            if(stristr($Blue, $username) === TRUE){
+str_replace($username, '', $Blue);
+}
+			   if ($RedCount >= $BlueCount){
+			      $Red = $username;
+			      $username->addItem((int)298, 0, (int)1);
+			   }
+			   else {
+			      $Blue = $username
+			      $username->addItem((int)310, 0, (int)1);
+			   };
+			   
+			   foreach($this->items as $id => $count){
+				$username->addItem((int)$id, 0, (int)$count);
+			   break;
+			   
+			   
+			   
+         unset($Red, $Blue);
+         ?>
