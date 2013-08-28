@@ -29,6 +29,12 @@ class IsnCTF implements Plugin{
          $Blue = 'iamadpond';
          $RedCount = count($Red);
          $BlueCount = count($Blue);
+         
+         $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
+                        'msgBLUE' => 'You are now a member of team Blue !', 
+                        'msgRED' => 'You are now a member of team Red !',));
+         
+         
          $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
 			'272' => '1',
 			'303' => '1',
@@ -41,23 +47,24 @@ class IsnCTF implements Plugin{
 	{
 		switch ($event) {
 			case "player.connect":
-                           $player = $this->api->player->get($data->iusername);
+                           $username = $this->api->player->get($data->iusername);
+                           $player = $this->api->player->get($username);
 			   if(stristr($Red, $player) === TRUE){
-str_replace($player, '', $Red);
+str_replace($username, '', $Red);
 }
-            if(stristr($Blue, $player) === TRUE){
-str_replace($player, '', $Blue);
+            if(stristr($Blue, $username) === TRUE){
+str_replace($username, '', $Blue);
 }
 			   if ($RedCount >= $BlueCount){
-			      $Red = $player;
+			      $Red = $username;
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Red'), $player);
+			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
 			   }
 			   else{
-			      $Blue = $player;
+			      $Blue = $username;
 			      $player->addItem((int)310, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Blue'), $player);
+			      $this->api->chat->sendTo(false, $this->config->get('msgBLUE'), $username);
 			   };
 			   
 			   foreach($this->items as $id => $count){
