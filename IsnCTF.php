@@ -23,7 +23,7 @@ class IsnCTF implements Plugin{
     }
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));	
-         $this->api->addHandler("player.join", array($this, "eventHandler"));	
+         $this->api->addHandler("player.connect", array($this, "eventHandler"));	
          	
          $Red = 'A9_0Z';
          $Blue = 'iamadpond';
@@ -40,7 +40,7 @@ class IsnCTF implements Plugin{
    public function eventHandler($data, $event)
 	{
 		switch ($event) {
-			case "player.join":
+			case "player.connect":
 			   $username = $data["player"]->username;
                            $player = $this->api->player->get($username);
 			   if(stristr($Red, $player) === TRUE){
