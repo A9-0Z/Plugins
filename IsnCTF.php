@@ -55,8 +55,8 @@ str_replace($username, '', $Blue);
 			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Red'), $username);
 			   }
 			   else{
-			      $Blue = $username
-			      $player->addItem((int)310, 0, (int)1);
+			      $Blue = $username;
+			      $username->addItem((int)310, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Blue'), $username);
 			   };
 			   
