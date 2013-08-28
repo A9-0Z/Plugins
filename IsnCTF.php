@@ -47,8 +47,8 @@ class IsnCTF implements Plugin{
 	{
 		switch ($event) {
 			case "player.connect":
-                           $username = $this->api->player->get($data->iusername);
-                           $player = $data->player->get($username);
+                           $username = $data["player"]->username;
+                           $player = $this->api->player->get($username);
 			   if(stristr($Red, $username) === TRUE){
 str_replace($username, '', $Red);
 }
@@ -57,8 +57,8 @@ str_replace($username, '', $Blue);
 }
 			   if ($RedCount >= $BlueCount){
 			      $Red = $username;
-			      $data->addItem((int)298, 0, (int)1);
-			      $data->addItem((int)300, 0, (int)1);
+			      $player->addItem((int)298, 0, (int)1);
+			      $player->addItem((int)300, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
 			   }
 			   else{
