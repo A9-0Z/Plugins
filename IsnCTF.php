@@ -41,8 +41,7 @@ class IsnCTF implements Plugin{
 	{
 		switch ($event) {
 			case "player.connect":
-			   $username = $data["player"]->username;
-                           $player = $this->api->player->get($username);
+                           $player = $this->api->player->get($data->iusername);
 			   if(stristr($Red, $player) === TRUE){
 str_replace($player, '', $Red);
 }
