@@ -25,6 +25,7 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));	
          $this->api->addHandler("player.join", array($this, "eventHandler"));	
          	
+         $username = $data["player"]->username;	
          $Red = 'A9_0Z';
          $Blue = 'iamadpond';
          $RedCount = count($Red);
@@ -55,6 +56,7 @@ str_replace($username, '', $Blue);
 			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Red'), $username);
 			   }
 			   else {
+			      $username = $data["player"]->username;
 			      $Blue = $username
 			      $username->addItem((int)310, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Blue'), $username);
