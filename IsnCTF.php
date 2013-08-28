@@ -76,9 +76,8 @@ str_replace($username, '', $Blue);
                            if($tarteam === $plateam ){
                            return false;
                            }
-		}
-	}
-			   break;
+	
+			   break;}}
 	 public function __destruct(){
 unset($Red, $Blue);
     }
