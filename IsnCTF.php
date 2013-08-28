@@ -17,7 +17,7 @@ Small Changelog
 */
 
 class IsnCTF implements Plugin{
-   private $api;
+   private $api, $path;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
     }
@@ -42,26 +42,27 @@ class IsnCTF implements Plugin{
 		switch ($event) {
 			case "player.join":
 			   $username = $data["player"]->username;
-			   if(stristr($Red, $username) === TRUE){
-str_replace($username, '', $Red);
+                           $player = $this->api->player->get($username);
+			   if(stristr($Red, $player) === TRUE){
+str_replace($player, '', $Red);
 }
-            if(stristr($Blue, $username) === TRUE){
-str_replace($username, '', $Blue);
+            if(stristr($Blue, $player) === TRUE){
+str_replace($player, '', $Blue);
 }
 			   if ($RedCount >= $BlueCount){
-			      $Red = $username;
-			      $username->addItem((int)298, 0, (int)1);
-			      $username->addItem((int)300, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Red'), $username);
+			      $Red = $player;
+			      $player->addItem((int)298, 0, (int)1);
+			      $player->addItem((int)300, 0, (int)1);
+			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Red'), $player);
 			   }
 			   else{
-			      $Blue = $username;
-			      $username->addItem((int)310, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Blue'), $username);
+			      $Blue = $player;
+			      $player->addItem((int)310, 0, (int)1);
+			      $this->api->chat->sendTo(false, $this->config->get('You are now a member of team Blue'), $player);
 			   };
 			   
 			   foreach($this->items as $id => $count){
-				$username->addItem((int)$id, 0, (int)$count);}
+				$player->addItem((int)$id, 0, (int)$count);}
 			   break;
 			   
 			case "player.interact":
@@ -69,8 +70,9 @@ str_replace($username, '', $Blue);
                            if(stristr($Blue, $target) === TRUE){ $tarteam = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $tarteam = 'Red'; }
                            $username = $data["player"]->username;
-                           if(stristr($Red, $username) === TRUE){ $plateam = 'Red'; }
-                           if(stristr($Blue, $username) === TRUE){ $plateam = 'Blue'; }
+                           $player = $this->api->player->get($username);
+                           if(stristr($Red, $player) === TRUE){ $plateam = 'Red'; }
+                           if(stristr($Blue, $player) === TRUE){ $plateam = 'Blue'; }
                            if($tarteam === $plateam ){
                            return false;
                            }
