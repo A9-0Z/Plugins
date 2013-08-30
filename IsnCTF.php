@@ -58,6 +58,7 @@ str_replace($username, '', $Red);
             if(stristr($Blue, $username) === TRUE){
 str_replace($username, '', $Blue);
 }
+                           sleep(5);
 			   if ($RedCount >= $BlueCount){
 		       $GLOBALS['Red'] = $username;
 			      $player->addItem((int)298, 0, (int)1);
