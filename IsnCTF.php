@@ -22,8 +22,8 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.connect", array($this, "eventHandler"));        
                 
-         $GLOBALS['Red']= '';
-         $GLOBALS['Blue']= '';
+         $GLOBALS['Red']= 'PlaceHold1';
+         $GLOBALS['Blue']= 'PlaceHold2';
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
          
