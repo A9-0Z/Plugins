@@ -87,7 +87,7 @@ str_replace($username, '', $Blue);
                            if($tarteam === $plateam ){
                            return false;
                            }
-	
+	 safe_var_dump($tar);
 			   break;}}
 	 public function __destruct(){
 global $Red,$Blue,$BlueCount,$RedCount;	 	
