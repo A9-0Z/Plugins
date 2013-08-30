@@ -40,29 +40,7 @@ class IsnCTF implements Plugin{
          }
 
 
-    public function __construct(ServerAPI $api, $server = false){
-        $this->api = $api;
-    }
-         public function init(){
-         $this->api->addHandler("player.interact", array($this, "eventHandler"));	
-         $this->api->addHandler("player.connect", array($this, "eventHandler"));	
-         	
-         $Red = '';
-         $Blue = '';
-         $RedCount = count($Red);
-         $BlueCount = count($Blue);
-         
-         $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
-                        'msgBLUE' => 'You are now a member of team Blue !', 
-                        'msgRED' => 'You are now a member of team Red !',));
-         
-         
-         $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
-			'272' => '1',
-			'303' => '1',
-			'320' => '5'));
-			$this->items = $this->api->plugin->readYAML($this->path . "items.yml");
-         }
+    
          
          
    public function eventHandler($data, $event)
