@@ -48,7 +48,7 @@ class IsnCTF implements Plugin{
 		global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
 		
 		switch ($event) {
-			case "player.join":
+			case "player.connect":
 		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
                           $GLOBALS['username']= $this->api->player->get($data->iusername);
                           $GLOBALS['player']= $data;
@@ -78,7 +78,7 @@ str_replace($username, '', $Blue);
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
 			   $tar = $this->api->entity->get($data["target"]);
-			   $target = $tar->get($data->iusername);
+			   $target = $this->api->player->get($tar->iusername);
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
                            if(stristr($Red, $username) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
