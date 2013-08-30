@@ -59,7 +59,7 @@ str_replace($username, '', $Red);
 str_replace($username, '', $Blue);
 }
                          
-			   if ($RedCount >= $BlueCount){
+			   if ($RedCount <= $BlueCount){
 		       $GLOBALS['Red'] = $username;
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
@@ -80,12 +80,12 @@ str_replace($username, '', $Blue);
 			
       $player = $this->api->player->getbyEID($data["entity"]->eid);
       $target = $this->api->player->getbyEID($data["targetentity"]->eid);
-      if($source != instanceof Player or $target != instanceof Player) {
+     /* if($source != instanceof Player or $target != instanceof Player) {
        $this->throwUnhandledErrorException(NOT_OBJECT);
       } else {
-      $usernameP = $player->username;
+      $usernameP = $player->username; */
        $target = $target->username;
-   }
+   
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
                            if(stristr($Red, $usernameP) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
