@@ -88,7 +88,8 @@ str_replace($username, '', $Blue);
 			   break;}}
 	 public function __destruct(){
 global $Red,$Blue,$BlueCount,$RedCount;	 	
-static unset($Red, $Blue);
+unset($GLOBALS['Red']);
+unset($GLOBALS['Blue']);
     }
  }
          ?>
