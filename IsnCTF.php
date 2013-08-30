@@ -30,7 +30,7 @@ class IsnCTF implements Plugin{
          $this->config = new Config($this->api->plugin->configPath($this)."config.yml", CONFIG_YAML, array(
                         'msgBLUE' => 'You are now a member of team Blue !', 
                         'msgRED' => 'You are now a member of team Red !',));
-         
+                        $this->config = $this->api->plugin->readYAML($this->api->plugin->configPath($this). "config.yml");
          
          $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
@@ -64,8 +64,8 @@ str_replace($username, '', $Blue);
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
-			   }
-			   else{
+			   
+			   } else {
 	               $GLOBALS['Blue']= $username;
 			      $player->addItem((int)310, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgBLUE'), $username);
@@ -82,8 +82,8 @@ str_replace($username, '', $Blue);
       $target = $this->api->player->getbyEID($data["targetentity"]->eid);
      /* if($source != instanceof Player or $target != instanceof Player) {
        $this->throwUnhandledErrorException(NOT_OBJECT);
-      } else {
-      $usernameP = $player->username; */
+      } else { */
+      $usernameP = $player->username; 
        $target = $target->username;
    
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
