@@ -63,12 +63,12 @@ str_replace($username, '', $Blue);
 		       $GLOBALS['Red'] = $username;
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
+			      $username->sendChat('You are now a member of team Red !');
 			   
 			   } else {
 	               $GLOBALS['Blue']= $username;
 			      $player->addItem((int)310, 0, (int)1);
-			      $this->api->chat->sendTo(false, $this->config->get('msgBLUE'), $username);
+			      $username->sendChat('You are now a member of team Blue !');
 			   };
 			   
 			   foreach($this->items as $id => $count){
