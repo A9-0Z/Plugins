@@ -27,12 +27,12 @@ class IsnCTF implements Plugin{
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
          
-         $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
+         $this->config = new Config($this->api->plugin->configPath($this)."config.yml", CONFIG_YAML, array(
                         'msgBLUE' => 'You are now a member of team Blue !', 
                         'msgRED' => 'You are now a member of team Red !',));
          
          
-         $this->items = new Config($this->path."items.yml", CONFIG_YAML, array(
+         $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
                         '303' => '1',
                         '320' => '5'));
@@ -77,7 +77,7 @@ str_replace($username, '', $Blue);
 			   
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
-			   $tar = $this->api->entity->get($data["target"]);
+			   $tar = $this->api->player->get($data["target"]);
 			   $target = $this->api->player->get($tar->iusername);
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
