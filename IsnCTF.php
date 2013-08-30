@@ -36,7 +36,7 @@ class IsnCTF implements Plugin{
                         '272' => '1',
                         '303' => '1',
                         '320' => '5'));
-                        $this->items = $this->api->plugin->readYAML($this->path . "items.yml");
+                        $this->items = $this->api->plugin->readYAML($this->api->plugin->configPath($this). "items.yml");
          }
 
 
