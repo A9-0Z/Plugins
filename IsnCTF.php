@@ -20,7 +20,7 @@ class IsnCTF implements Plugin{
     }
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
-         $this->api->addHandler("player.connect", array($this, "eventHandler"));        
+         $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
                 
          $GLOBALS['Red']= 'PlaceHold1';
          $GLOBALS['Blue']= 'PlaceHold2';
@@ -48,7 +48,7 @@ class IsnCTF implements Plugin{
 		global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
 		
 		switch ($event) {
-			case "player.connect":
+			case "player.spawn":
 		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
                           $GLOBALS['username']= $this->api->player->get($data->iusername);
                           $GLOBALS['player']= $data;
@@ -58,7 +58,7 @@ str_replace($username, '', $Red);
             if(stristr($Blue, $username) === TRUE){
 str_replace($username, '', $Blue);
 }
-                           sleep(5);
+                         
 			   if ($RedCount >= $BlueCount){
 		       $GLOBALS['Red'] = $username;
 			      $player->addItem((int)298, 0, (int)1);
@@ -77,17 +77,25 @@ str_replace($username, '', $Blue);
 			   
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
-			   $tar = $this->api->player->get($data["target"]);
-			   $target = $this->api->player->get($tar->iusername);
+			
+      $player = $this->api->player->getbyEID($data["entity"]->eid);
+      $target = $this->api->player->getbyEID($data["targetentity"]->eid);
+      if($source != instanceof Player or $target != instanceof Player) {
+       $this->throwUnhandledErrorException(NOT_OBJECT);
+      } else {
+      $usernameP = $player->username;
+       $target = $target->username;
+   }
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
-                           if(stristr($Red, $username) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
-                           if(stristr($Blue, $username) === TRUE){ $GLOBALS['plateam'] = 'Blue'; }
+                           if(stristr($Red, $usernameP) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
+                           if(stristr($Blue, $usernameP) === TRUE){ $GLOBALS['plateam'] = 'Blue'; }
                            global $tarteam,$plateam;
                            if($tarteam === $plateam ){
+                           $player->sendChat("Player is on your team !!");
                            return false;
                            }
-	 safe_var_dump($tar);
+	 
 			   break;}}
 	 public function __destruct(){
 global $Red,$Blue,$BlueCount,$RedCount;	 	
