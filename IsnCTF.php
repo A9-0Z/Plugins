@@ -22,10 +22,10 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.connect", array($this, "eventHandler"));        
                 
-        static $Red = '';
-        static $Blue = '';
-        static $RedCount = count($Red);
-        static $BlueCount = count($Blue);
+         $GLOBALS['Red']= '';
+         $GLOBALS['Blue']= '';
+         $GLOBALS['RedCount']= count($Red);
+         $GLOBALS['BlueCount']= count($Blue);
          
          $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
                         'msgBLUE' => 'You are now a member of team Blue !', 
@@ -45,11 +45,13 @@ class IsnCTF implements Plugin{
          
    public function eventHandler($data, $event)
 	{
+		global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
+		
 		switch ($event) {
 			case "player.join":
-		          global $Red,$Blue,$BlueCount,$RedCount;
-                          static $username = $this->api->player->get($data->iusername);
-                          static $player = $data;
+		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
+                          $GLOBALS['username']= $this->api->player->get($data->iusername);
+                          $GLOBALS['player']= $data;
 			   if(stristr($Red, $username) === TRUE){
 str_replace($username, '', $Red);
 }
@@ -57,13 +59,13 @@ str_replace($username, '', $Red);
 str_replace($username, '', $Blue);
 }
 			   if ($RedCount >= $BlueCount){
-		       static $Red = $username;
+		       $GLOBALS['Red'] = $username;
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
 			   }
 			   else{
-	               static $Blue = $username;
+	               $GLOBALS['Blue']= $username;
 			      $player->addItem((int)310, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgBLUE'), $username);
 			   };
@@ -73,6 +75,7 @@ str_replace($username, '', $Blue);
 			   break;
 			   
 			case "player.interact":
+			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
 			   $target = $this->api->entity->get($data["target"]);
                            if(stristr($Blue, $target) === TRUE){ $tarteam = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $tarteam = 'Red'; }
