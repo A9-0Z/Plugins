@@ -77,7 +77,8 @@ str_replace($username, '', $Blue);
 			   
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
-			   $target = $this->api->entity->get($data["target"]);
+			   $tar = $this->api->entity->get($data["target"]);
+			   $target = $tar->get($data->iusername);
                            if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
                            if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
                            if(stristr($Red, $username) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
