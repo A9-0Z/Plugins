@@ -38,8 +38,7 @@ class IsnCTF implements Plugin{
                         '320' => '5'));
                         $this->items = $this->api->plugin->readYAML($this->path . "items.yml");
          }
-Commit summary: Extended description: (optional)
-A9-0Z samuelandrewmark@gmail.com
+
 
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
