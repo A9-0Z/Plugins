@@ -22,10 +22,10 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.connect", array($this, "eventHandler"));        
                 
-         $Red = '';
-         $Blue = '';
-         $RedCount = count($Red);
-         $BlueCount = count($Blue);
+        static $Red = '';
+        static $Blue = '';
+        static $RedCount = count($Red);
+        static $BlueCount = count($Blue);
          
          $this->config = new Config($this->path."config.yml", CONFIG_YAML, array(
                         'msgBLUE' => 'You are now a member of team Blue !', 
@@ -46,9 +46,10 @@ class IsnCTF implements Plugin{
    public function eventHandler($data, $event)
 	{
 		switch ($event) {
-			case "player.connect":
-                           $username = $this->api->player->get($data->iusername);
-                           $player = $data;
+			case "player.join":
+		          global $Red,$Blue,$BlueCount,$RedCount;
+                          static $username = $this->api->player->get($data->iusername);
+                          static $player = $data;
 			   if(stristr($Red, $username) === TRUE){
 str_replace($username, '', $Red);
 }
@@ -56,13 +57,13 @@ str_replace($username, '', $Red);
 str_replace($username, '', $Blue);
 }
 			   if ($RedCount >= $BlueCount){
-			      $Red = $username;
+		       static $Red = $username;
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgRED'), $username);
 			   }
 			   else{
-			      $Blue = $username;
+	               static $Blue = $username;
 			      $player->addItem((int)310, 0, (int)1);
 			      $this->api->chat->sendTo(false, $this->config->get('msgBLUE'), $username);
 			   };
@@ -83,7 +84,8 @@ str_replace($username, '', $Blue);
 	
 			   break;}}
 	 public function __destruct(){
-unset($Red, $Blue);
+global $Red,$Blue,$BlueCount,$RedCount;	 	
+static unset($Red, $Blue);
     }
  }
          ?>
