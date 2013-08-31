@@ -22,8 +22,8 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
                 
-         $GLOBALS['Red']= 'PlaceHold1';
-         $GLOBALS['Blue']= 'PlaceHold2';
+         $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
+         $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
          
@@ -52,12 +52,16 @@ class IsnCTF implements Plugin{
 		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
                           $GLOBALS['username']= $this->api->player->get($data->iusername);
                           $GLOBALS['player']= $data;
-			   if(stristr($Red, $username) === TRUE){
-str_replace($username, '', $Red);
-}
-            if(stristr($Blue, $username) === TRUE){
-str_replace($username, '', $Blue);
-}
+			    $search = array_search($username,$Blue);
+                            if ($search !== FALSE){
+                            $Blue = str_replace($username,'',$Blue);
+                            $Blue = array_filter($Blue);}
+
+                            $search = array_search($username,$Red);
+                            if ($search !== FALSE){
+                            $Red = str_replace($username,'',$Red);
+                            $Red = array_filter($Red);}
+
                          
 			   if ($RedCount <= $BlueCount){
 		       $GLOBALS['Red'] = $username;
