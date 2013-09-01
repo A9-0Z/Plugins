@@ -117,9 +117,9 @@ class IsnCTF implements Plugin{
       	if ($target->getMetadata() === 14){ $this->api->chat->broadcast('Getting passed META');
              $search = array_search($username,$Blue);
              if ($search !== FALSE){ $this->api->chat->broadcast('Getting passed Search');
-      		$x = $target->entity->x;
-                $y = $target->entity->y;
-                $z = $target->entity->z;
+      		$x = $target->x;
+                $y = $target->y;
+                $z = $target->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
