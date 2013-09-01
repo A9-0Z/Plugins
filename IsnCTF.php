@@ -38,11 +38,6 @@ class IsnCTF implements Plugin{
                 $this->interval = $this->configSC->get("interval");
                 $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
          
-         $this->config = new Config($this->api->plugin->configPath($this)."config.yml", CONFIG_YAML, array(
-                        'msgBLUE' => 'You are now a member of team Blue !', 
-                        'msgRED' => 'You are now a member of team Red !',));
-                        $this->config = $this->api->plugin->readYAML($this->api->plugin->configPath($this). "config.yml");
-         
          $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
                         '303' => '1',
@@ -55,8 +50,8 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 
                         $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'Red Team = $RedSCount');
-                        $this->api->chat->broadcast("[ISN] " . 'Blue Team = $BlueSCount');
+                        $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' $RedSCount);
+                        $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' $BlueSCount);
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
                         
@@ -75,6 +70,10 @@ class IsnCTF implements Plugin{
 		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
                           $GLOBALS['username']= $this->api->player->get($data->iusername);
                           $GLOBALS['player']= $data;
+         
+         $GLOBALS['RedCount']= count($Red);
+         $GLOBALS['BlueCount']= count($Blue);
+         
 			    $search = array_search($username,$Blue);
                             if ($search !== FALSE){
                             $Blue = str_replace($username,'',$Blue);
@@ -96,7 +95,7 @@ class IsnCTF implements Plugin{
 	                array_push($GLOBALS['Blue'],$username);
 			      $player->addItem((int)310, 0, (int)1);
 			      $username->sendChat('You are now a member of team Blue !');
-			   };
+			   }
 			   
 			   foreach($this->items as $id => $count){
 				$player->addItem((int)$id, 0, (int)$count);}
