@@ -11,6 +11,9 @@ apiversion=9
 /*
 Small Changelog
 ===============
+Commit summary: Extended description: (optional)
+A9-0Z samuelandrewmark@gmail.com
+
 1.0: Initial release
 */
 class IsnCTF implements Plugin{
@@ -107,7 +110,7 @@ class IsnCTF implements Plugin{
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            $this->api->chat->broadcast("Getting passed function");
       $target = $data["target"];
-      if ($target->getID() === '35'){ $this->api->chat->broadcast('Getting passed ID');
+      if ($target->getID() === 35){ $this->api->chat->broadcast('Getting passed ID');
       	if ($target->getMetadata() === '14'){ $this->api->chat->broadcast('Getting passed META');
              $search = array_search($username,$Blue);
              if ($search !== FALSE){ $this->api->chat->broadcast('Getting passed Search');
@@ -124,7 +127,7 @@ class IsnCTF implements Plugin{
           }
      }
 }
-        if ($target->getID() === '35'){
+        if ($target->getID() === 35){
       	if ($target->getMetadata() === '11'){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
