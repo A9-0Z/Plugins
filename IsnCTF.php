@@ -129,7 +129,7 @@ class IsnCTF implements Plugin{
       		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if($x === 64 and $y === 64 and $z === 64){
+                if($x === 66 and $y === 65 and $z === 64){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['RedSC'],$username);
