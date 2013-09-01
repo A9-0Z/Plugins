@@ -50,7 +50,7 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
                         $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $RedSCount);
+                        $this->api->chat->broadcast("[ISN] " . 'Red  Team Score = ' . $RedSCount);
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $BlueSCount);
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
@@ -109,16 +109,16 @@ class IsnCTF implements Plugin{
       	if ($target->getMetadata() === 14){
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
-      		$x = $target->entity->x;
+      		/*$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
+                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){*/
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	
-                }}
-                }else{$this->api->chat->broadcast("[ISN] " . 'Flag dropped !');}
+                
+                
           }
      }
 }
@@ -126,15 +126,15 @@ class IsnCTF implements Plugin{
       	if ($target->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
-      		$x = $target->entity->x;
+      		/*$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
+                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){*/
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['RedSC'],$username);
-                }}
-                }else{$this->api->chat->broadcast("[ISN] " . 'Flag dropped !');}
+                
+                
              }
         }
      }                  break;
