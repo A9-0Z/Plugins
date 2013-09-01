@@ -14,7 +14,7 @@ Small Changelog
 1.0: Initial release
 */
 class IsnCTF implements Plugin{
-   private $api, $path, $server, $config;
+   private $api, $this, $path, $server, $config;
    private $nr = 0;
    private $interval;
     public function __construct(ServerAPI $api, $server = false){
