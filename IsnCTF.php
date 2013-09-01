@@ -14,6 +14,9 @@ Small Changelog
 Commit summary: Extended description: (optional)
 A9-0Z samuelandrewmark@gmail.com
 
+Commit summary: Extended description: (optional)
+A9-0Z samuelandrewmark@gmail.com
+
 1.0: Initial release
 */
 class IsnCTF implements Plugin{
@@ -108,38 +111,38 @@ class IsnCTF implements Plugin{
 		
                         case "player.block.touch":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-                           $this->api->chat->broadcast("Getting passed function");
+                           
       $target = $data["target"];
-      if ($target->getID() === 35){ $this->api->chat->broadcast('Getting passed ID');
-      	if ($target->getMetadata() === '14'){ $this->api->chat->broadcast('Getting passed META');
+      if ($target->getID() === 35){ 
+      	if ($target->getMetadata() === 14){ $this->api->chat->broadcast('Getting passed META');
              $search = array_search($username,$Blue);
              if ($search !== FALSE){ $this->api->chat->broadcast('Getting passed Search');
-      		/*$x = $target->entity->x;
+      		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){*/
+                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
-                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
+                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['BlueSC'],$username);
-                	
-                
+                    }}	
+                }
                 
           }
      }
 }
         if ($target->getID() === 35){
-      	if ($target->getMetadata() === '11'){
+      	if ($target->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
-      		/*$x = $target->entity->x;
+      		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){*/
+                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
-                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
+                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
-
+                }}}
              }
         }
      }                 break;
