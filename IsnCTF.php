@@ -117,8 +117,8 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	
-                }}}
-              else $this->api->chat->broadcast("[ISN] " . 'Flag dropped !');
+                }}
+                }else{$this->api->chat->broadcast("[ISN] " . 'Flag dropped !');}
           }
      }
 }
@@ -133,7 +133,8 @@ class IsnCTF implements Plugin{
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['RedSC'],$username);
-                }}}
+                }}
+                }else{$this->api->chat->broadcast("[ISN] " . 'Flag dropped !');}
              }
         }
      }                  break;
