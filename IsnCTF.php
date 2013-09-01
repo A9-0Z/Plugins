@@ -105,12 +105,12 @@ class IsnCTF implements Plugin{
 		
                         case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-                           
+                           $this->api->chat->broadcast("Getting passed function");
       $target = $data["block"];
-      if ($target->getID() === '35'){
-      	if ($target->getMetadata() === '14'){
+      if ($target->getID() === '35'){ $this->api->chat->broadcast('Getting passed ID');
+      	if ($target->getMetadata() === '14'){ $this->api->chat->broadcast('Getting passed META');
              $search = array_search($username,$Blue);
-             if ($search !== FALSE){
+             if ($search !== FALSE){ $this->api->chat->broadcast('Getting passed Search');
       		/*$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
