@@ -32,7 +32,7 @@ class IsnCTF implements Plugin{
          $GLOBALS['RedSC']= array();
          $GLOBALS['BlueSC']= array();
          $GLOBALS['BlueSCount']= count($BlueSC);
-         $GLOBALS['RedSCount']= count($RedSC)
+         $GLOBALS['RedSCount']= count($RedSC);
          
          $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
                 $this->interval = $this->configSC->get("interval");
