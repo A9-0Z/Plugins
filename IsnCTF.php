@@ -110,11 +110,11 @@ class IsnCTF implements Plugin{
 			   break;
 		
                         case "player.block.touch":
-                        		if($data["type"] == "place"){
+                        	$this->api->chat->broadcast('Function');	if($data["type"] == "place"){
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-                           
+                           $this->api->chat->broadcast('Function2');
       $target = $data["target"];
-      if ($target->getID() === 35){ 
+      if ($target->getID() === 35){ $this->api->chat->broadcast('ID');
       	if ($target->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
