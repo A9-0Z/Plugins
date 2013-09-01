@@ -135,9 +135,9 @@ class IsnCTF implements Plugin{
       	if ($target->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
-      		$x = $target->->x;
-                $y = $target->->y;
-                $z = $target->->z;
+      		$x = $target->x;
+                $y = $target->y;
+                $z = $target->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
