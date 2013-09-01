@@ -53,16 +53,15 @@ class IsnCTF implements Plugin{
 
     public function msg() {
                 $messagesArray = $this->configSC->get("messages");
-                if (count($messagesArray) > 1) {
+                
                         $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . 'Red Team = $RedSCount');
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team = $BlueSCount');
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
-                        } else {
-                                $this->nr = 0;
+                        
                         }
-                }
+                
                 $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
         }
          
@@ -87,13 +86,13 @@ class IsnCTF implements Plugin{
                             $GLOBALS['Red'] = array_filter($Red);}
 
                          
-			   if ($RedCount <= $BlueCount){
+			   if ($RedCount < $BlueCount){
 		       array_push($GLOBALS['Red'],$username);
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $username->sendChat('You are now a member of team Red !');
 			   } 
-			   if ($RedCount > $BlueCount){
+			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
 			      $player->addItem((int)310, 0, (int)1);
 			      $username->sendChat('You are now a member of team Blue !');
