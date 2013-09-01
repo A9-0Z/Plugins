@@ -29,7 +29,7 @@ class IsnCTF implements Plugin{
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
-         $this->api->addHandler("player.block.place", array($this, "eventHandler"));
+         $this->api->addHandler("player.block.touch", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
