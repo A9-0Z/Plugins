@@ -115,8 +115,8 @@ class IsnCTF implements Plugin{
                         if($data["type"] == "place"){
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            $this->api->chat->broadcast('Function2');
-      $target = $data["block"];
-      safe_var_dump($target);
+      $target = $data["target"];
+      safe_var_dump($data);
       if ($target->getID() === 35){ $this->api->chat->broadcast('ID');
       	if ($target->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
