@@ -23,7 +23,7 @@ class IsnCTF implements Plugin{
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
-         $this->api->addHandler("player.block.place", array($this, "eventHandler"));
+         $this->api->addHandler("player.block.touch", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -103,7 +103,7 @@ class IsnCTF implements Plugin{
 				$player->addItem((int)$id, 0, (int)$count);}
 			   break;
 		
-                        case "player.block.place":
+                        case "player.block.touch":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            $this->api->chat->broadcast("Getting passed function");
       $target = $data["target"];
