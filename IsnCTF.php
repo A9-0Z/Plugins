@@ -104,12 +104,12 @@ class IsnCTF implements Plugin{
                         case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
-      $target = $data["block"];
+      /*$target = $data["block"];
       if ($target->getID() === 35){
       	if ($target->getMetadata() === 14){
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
-      		/*$x = $target->entity->x;
+      		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){*/
@@ -119,7 +119,7 @@ class IsnCTF implements Plugin{
                 	
                 
                 
-          }
+          /*}
      }
 }
         if ($target->getID() === 35){
@@ -134,10 +134,10 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
-                
+/*
              }
         }
-     }                  break;
+     }    */              break;
       
       
 			case "player.interact":
