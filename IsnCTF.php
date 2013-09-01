@@ -14,18 +14,29 @@ Small Changelog
 1.0: Initial release
 */
 class IsnCTF implements Plugin{
-   private $api, $path;
+   private $api, $path, $server, $config;
+   private $nr = 0;
+   private $interval;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
     }
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
+         $this->api->addHandler("player.block.place", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
+         $GLOBALS['RedSC']= array();
+         $GLOBALS['BlueSC']= array();
+         $GLOBALS['BlueSCount']= count($BlueSC);
+         $GLOBALS['RedSCount']= count($RedSC)
+         
+         $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
+                $this->interval = $this->configSC->get("interval");
+                $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
          
          $this->config = new Config($this->api->plugin->configPath($this)."config.yml", CONFIG_YAML, array(
                         'msgBLUE' => 'You are now a member of team Blue !', 
@@ -40,7 +51,20 @@ class IsnCTF implements Plugin{
          }
 
 
-    
+    public function msg() {
+                $messagesArray = $this->configSC->get("messages");
+                if (count($messagesArray) > 1) {
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'Red Team = $RedSCount');
+                        $this->api->chat->broadcast("[ISN] " . 'Blue Team = $BlueSCount');
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        } else {
+                                $this->nr = 0;
+                        }
+                }
+                $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
+        }
          
          
    public function eventHandler($data, $event)
@@ -55,22 +79,22 @@ class IsnCTF implements Plugin{
 			    $search = array_search($username,$Blue);
                             if ($search !== FALSE){
                             $Blue = str_replace($username,'',$Blue);
-                            $Blue = array_filter($Blue);}
+                            $GLOBALS['Blue'] = array_filter($Blue);}
 
                             $search = array_search($username,$Red);
                             if ($search !== FALSE){
                             $Red = str_replace($username,'',$Red);
-                            $Red = array_filter($Red);}
+                            $GLOBALS['Red'] = array_filter($Red);}
 
                          
 			   if ($RedCount <= $BlueCount){
-		       $GLOBALS['Red'] = $username;
+		       array_push($GLOBALS['Red'],$username);
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $username->sendChat('You are now a member of team Red !');
 			   
 			   } else {
-	               $GLOBALS['Blue']= $username;
+	                array_push($GLOBALS['Blue'],$username);
 			      $player->addItem((int)310, 0, (int)1);
 			      $username->sendChat('You are now a member of team Blue !');
 			   };
@@ -78,7 +102,42 @@ class IsnCTF implements Plugin{
 			   foreach($this->items as $id => $count){
 				$player->addItem((int)$id, 0, (int)$count);}
 			   break;
-			   
+		
+                        case "player.block.place":
+                           global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
+                           
+      $target = $data["target"];
+      if ($target->getID() === 35:14){
+             $search = array_search($username,$Blue);
+             if ($search !== FALSE){
+      		$x = $target->entity->x;
+                $y = $target->entity->y;
+                $z = $target->entity->z;
+                if($x === 0 and $y === 64 and $z === 0){
+                        $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
+                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
+                	 array_push($GLOBALS['BlueSC'],$username);
+                	
+                }
+                
+      }
+}
+        if ($target->getID() === 35:11){
+             $search = array_search($username,$Red);
+             if ($search !== FALSE){
+      		$x = $target->entity->x;
+                $y = $target->entity->y;
+                $z = $target->entity->z;
+                if($x === 64 and $y === 64 and $z === 0){
+                        $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
+                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
+                	 array_push($GLOBALS['RedSC'],$username);
+                }
+             }
+        }
+                        break;
+      
+      
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
 			
