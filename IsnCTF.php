@@ -92,8 +92,8 @@ class IsnCTF implements Plugin{
 			      $player->addItem((int)298, 0, (int)1);
 			      $player->addItem((int)300, 0, (int)1);
 			      $username->sendChat('You are now a member of team Red !');
-			   
-			   } else {
+			   } 
+			   if ($RedCount > $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
 			      $player->addItem((int)310, 0, (int)1);
 			      $username->sendChat('You are now a member of team Blue !');
@@ -113,7 +113,7 @@ class IsnCTF implements Plugin{
       		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if($x === 0 and $y === 64 and $z === 0){
+                if($x === 125 and $y === 63 and $z === 115){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['BlueSC'],$username);
@@ -149,10 +149,14 @@ class IsnCTF implements Plugin{
       $usernameP = $player->username; 
        $target = $target->username;
    
-                           if(stristr($Blue, $target) === TRUE){  $GLOBALS['tarteam'] = 'Blue'; }
-                           if(stristr($Red, $target) === TRUE){ $GLOBALS['tarteam'] = 'Red'; }
-                           if(stristr($Red, $usernameP) === TRUE){ $GLOBALS['plateam'] = 'Red'; }
-                           if(stristr($Blue, $usernameP) === TRUE){ $GLOBALS['plateam'] = 'Blue'; }
+                           $search = array_search($target,$Blue);
+                           if ($search !== FALSE){ $GLOBALS['tarteam'] = 'Blue'; }
+                           $search = array_search($target,$Red);
+                           if ($search !== FALSE){ $GLOBALS['tarteam'] = 'Red'; }
+                           $search = array_search($usernameP,$Red);
+                           if ($search !== FALSE){ $GLOBALS['plateam'] = 'Red'; }
+                           $search = array_search($usernameP,$Blue);
+                           if ($search !== FALSE){ $GLOBALS['plateam'] = 'Blue'; }
                            global $tarteam,$plateam;
                            if($tarteam === $plateam ){
                            $player->sendChat("Player is on your team !!");
