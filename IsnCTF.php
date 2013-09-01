@@ -118,7 +118,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	
                 }}}
-                
+              else $this->api->chat->broadcast("[ISN] " . 'Flag dropped !');
           }
      }
 }
