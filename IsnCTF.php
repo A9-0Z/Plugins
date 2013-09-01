@@ -105,7 +105,8 @@ class IsnCTF implements Plugin{
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["target"];
-      if ($target->getID() === '35:14'){
+      if ($target->getID() === 35){
+      	if ($target->getMetadata() === 14){
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
       		$x = $target->entity->x;
@@ -118,22 +119,24 @@ class IsnCTF implements Plugin{
                 	
                 }
                 
-      }
+          }
+     }
 }
-        if ($target->getID() === '35:11'){
+        if ($target->getID() === 35){
+      	if ($target->getMetadata() === 14){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
       		$x = $target->entity->x;
                 $y = $target->entity->y;
                 $z = $target->entity->z;
-                if($x === 64 and $y === 64 and $z === 0){
+                if($x === 64 and $y === 64 and $z === 64){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by $username !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 }
              }
         }
-                        break;
+     }                  break;
       
       
 			case "player.interact":
