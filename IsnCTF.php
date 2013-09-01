@@ -104,7 +104,7 @@ class IsnCTF implements Plugin{
                         case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
-      $target = $data["target"];
+      $target = $data["block"];
       if ($target->getID() === 35){
       	if ($target->getMetadata() === 14){
              $search = array_search($username,$Blue);
