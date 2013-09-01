@@ -107,7 +107,7 @@ class IsnCTF implements Plugin{
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["target"];
-      if ($target->getID() === 35:14){
+      if ($target->getID() === '35:14'){
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
       		$x = $target->entity->x;
@@ -122,7 +122,7 @@ class IsnCTF implements Plugin{
                 
       }
 }
-        if ($target->getID() === 35:11){
+        if ($target->getID() === '35:11'){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
       		$x = $target->entity->x;
