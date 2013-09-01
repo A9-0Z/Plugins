@@ -150,7 +150,7 @@ class IsnCTF implements Plugin{
                 }}}
              }
         }
-     } }                break;
+     }                 break;
       
       
 			case "player.interact":
