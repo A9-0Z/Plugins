@@ -123,7 +123,7 @@ class IsnCTF implements Plugin{
      }
 }
         if ($target->getID() === 35){
-      	if ($target->getMetadata() === 14){
+      	if ($target->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
       		$x = $target->entity->x;
