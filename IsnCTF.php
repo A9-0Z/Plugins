@@ -29,7 +29,7 @@ class IsnCTF implements Plugin{
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
-         $this->api->addHandler("player.block.touch", array($this, "eventHandler"));
+         $this->api->addHandler("player.block.place", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -58,8 +58,8 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
                         $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'Red  Team Score = ' . $RedSCount);
-                        $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $BlueSCount);
+                        $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                        $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
                         
@@ -109,18 +109,19 @@ class IsnCTF implements Plugin{
 				$player->addItem((int)$id, 0, (int)$count);}
 			   break;
 		
-                        case "player.block.touch":
+                        case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["target"];
       if ($target->getID() === 35){ 
-      	if ($target->getMetadata() === 14){ $this->api->chat->broadcast('Getting passed META');
+      	if ($target->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
-             if ($search !== FALSE){ $this->api->chat->broadcast('Getting passed Search');
+             if ($search !== FALSE){
       		$x = $target->x;
                 $y = $target->y;
                 $z = $target->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
+                	return true;
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['BlueSC'],$username);
@@ -134,12 +135,12 @@ class IsnCTF implements Plugin{
       	if ($target->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
-      		$x = $target->entity->x;
-                $y = $target->entity->y;
-                $z = $target->entity->z;
+      		$x = $target->->x;
+                $y = $target->->y;
+                $z = $target->->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
-                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
+                	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
                 }}}
