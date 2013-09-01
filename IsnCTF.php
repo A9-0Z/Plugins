@@ -109,7 +109,8 @@ class IsnCTF implements Plugin{
 				$player->addItem((int)$id, 0, (int)$count);}
 			   break;
 		
-                        case "player.block.place":
+                        case "player.block.touch":
+                        		if($data["type"] == "place"){
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["target"];
@@ -146,7 +147,7 @@ class IsnCTF implements Plugin{
                 }}}
              }
         }
-     }                 break;
+     } }                break;
       
       
 			case "player.interact":
