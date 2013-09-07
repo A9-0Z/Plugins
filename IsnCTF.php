@@ -199,7 +199,7 @@ class IsnCTF implements Plugin{
 					if(isset($item) and $item->getID() !== $data->getID()){
 						continue;
 					}
-					$player->setSlot($slot, BlockAPI::getItem(AIR, 0, 0));
+					$player->setSlot($slot, BlockAPI::getItem(AIR, 0, 0));}
          
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
