@@ -30,7 +30,7 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
          $this->api->addHandler("player.block.place", array($this, "eventHandler"));
-         $this->api->addHandler("player.death", array($this, "eventHandler"));
+         $this->api->addHandler("player.block.break", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -231,6 +231,26 @@ class IsnCTF implements Plugin{
 				$player->addItem((int)$id, 0, (int)$count);}
 			   
 			   break;
+		
+		        case "player.block.break":
+		        	global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
+		safe_var_dump($data);
+		$target = $data["target"];
+		if ($target->getID() === 35){ 
+			if ($item->getMetadata() === 14){ 
+			  $search = array_search($username,$Blue);
+                           if ($search !== FALSE){return true;}
+                           if ($search === FALSE){return false;
+                           }
+			}
+			if ($item->getMetadata() === 11){
+				$search = array_search($username,$Red);
+                           if ($search !== FALSE){return true;}
+                           if ($search === FALSE){return false;
+                           }
+			}
+		if ($target->getID() !== 35){ return false;}}
+		        break;
 		
                         case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
