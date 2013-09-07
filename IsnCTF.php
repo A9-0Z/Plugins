@@ -48,7 +48,7 @@ class IsnCTF implements Plugin{
                 
          $this->configST = new Config($this->api->plugin->configPath($this) . "configST.yml", CONFIG_YAML, array('interval' => 1.3, 'messages' => array("Example message")));
                 $this->intervalSt = $this->configSC->get("interval");
-                $this->api->scheduleSt(20 * 60 * $this->intervalSt, array($this, "stop"), array(), false);
+                $this->api->schedule(20 * 60 * $this->intervalSt, array($this, "stop"), array(), false);
          
          $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
