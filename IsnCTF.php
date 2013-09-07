@@ -234,15 +234,16 @@ class IsnCTF implements Plugin{
 		
 		        case "player.block.break":
 		        	global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-		safe_var_dump($data);
+	
 		$target = $data["target"];
-		if ($target->getID() === 35){ 
-			if ($target->getMetadata() === 14){ 
+		if ($target->getID() === 35){ $this->api->chat->broadcast("ID");
+			if ($target->getMetadata() === 14){ $this->api->chat->broadcast("META");
 			  $search = array_search($username,$Blue);
                            if ($search !== FALSE){return true;
                            $this->api->chat->broadcast("[ISN] " . 'Red Flag Stolen by ' . $username . '!');
                            }
-                           if ($search === FALSE){return false;
+                           if ($search === FALSE){ $this->api->chat->broadcast("Search FALSE");
+                           	return false;
                            }
 			}
 			if ($target->getMetadata() === 11){
@@ -253,7 +254,8 @@ class IsnCTF implements Plugin{
                            if ($search === FALSE){return false;
                            }
 			}
-		if ($target->getID() !== 35){ return false;}}
+		if ($target->getID() !== 35){ $this->api->chat->broadcast("FALSE aint workin");
+			return false;}}
 		        break;
 		
                         case "player.block.place":
@@ -271,7 +273,7 @@ class IsnCTF implements Plugin{
                 $z = $target->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
-                	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
+                	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['BlueSC'],$username);
                     }}	
                 }
