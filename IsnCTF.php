@@ -237,15 +237,19 @@ class IsnCTF implements Plugin{
 		safe_var_dump($data);
 		$target = $data["target"];
 		if ($target->getID() === 35){ 
-			if ($item->getMetadata() === 14){ 
+			if ($target->getMetadata() === 14){ 
 			  $search = array_search($username,$Blue);
-                           if ($search !== FALSE){return true;}
+                           if ($search !== FALSE){return true;
+                           $this->api->chat->broadcast("[ISN] " . 'Red Flag Stolen by ' . $username . '!');
+                           }
                            if ($search === FALSE){return false;
                            }
 			}
-			if ($item->getMetadata() === 11){
+			if ($target->getMetadata() === 11){
 				$search = array_search($username,$Red);
-                           if ($search !== FALSE){return true;}
+                           if ($search !== FALSE){return true;
+                           $this->api->chat->broadcast("[ISN] " . 'Blue Flag Stolen by ' . $username . '!');
+                           }
                            if ($search === FALSE){return false;
                            }
 			}
