@@ -114,8 +114,8 @@ class IsnCTF implements Plugin{
                         $this->api->chat->broadcast('Function');	
                        
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-                           $this->api->chat->broadcast('Function2');
-      $target = $data["item"];
+                           
+      $target = $data["block"];
       $item = $data["item"];
 
       if ($item->getID() === 35){ $this->api->chat->broadcast('ID');
