@@ -115,9 +115,9 @@ class IsnCTF implements Plugin{
                        
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            $this->api->chat->broadcast('Function2');
-      $target = $data["target"];
+      $target = $data["item"];
       $item = $data["item"];
-      safe_var_dump($data[item]);
+
       if ($item->getID() === 35){ $this->api->chat->broadcast('ID');
       	if ($item->getMetadata() === 14){ $this->api->chat->broadcast('META');
              $search = array_search($username,$Blue);
@@ -126,7 +126,6 @@ class IsnCTF implements Plugin{
                 $y = $target->y;
                 $z = $target->z;
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
-                	return true;
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast("[ISN] " . 'Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['BlueSC'],$username);
