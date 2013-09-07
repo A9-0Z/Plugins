@@ -116,9 +116,10 @@ class IsnCTF implements Plugin{
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            $this->api->chat->broadcast('Function2');
       $target = $data["target"];
-      safe_var_dump($data);
-      if ($target->getID() === 35){ $this->api->chat->broadcast('ID');
-      	if ($target->getMetadata() === 14){ 
+      $item = $data["item"];
+      safe_var_dump($data[item]);
+      if ($item->getID() === 35){ $this->api->chat->broadcast('ID');
+      	if ($item->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
       		$x = $target->x;
@@ -135,8 +136,8 @@ class IsnCTF implements Plugin{
           }
      }
 }
-        if ($target->getID() === 35){
-      	if ($target->getMetadata() === 11){
+        if ($item->getID() === 35){
+      	if ($item->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
       		$x = $target->x;
