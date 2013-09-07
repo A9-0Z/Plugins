@@ -119,7 +119,7 @@ class IsnCTF implements Plugin{
       $item = $data["item"];
       safe_var_dump($data[item]);
       if ($item->getID() === 35){ $this->api->chat->broadcast('ID');
-      	if ($item->getMetadata() === 14){ 
+      	if ($item->getMetadata() === 14){ $this->api->chat->broadcast('META');
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
       		$x = $target->x;
