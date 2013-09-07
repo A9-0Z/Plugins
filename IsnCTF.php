@@ -195,6 +195,11 @@ class IsnCTF implements Plugin{
 		          global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
                           $GLOBALS['username']= $this->api->player->get($data->iusername);
                           $GLOBALS['player']= $data;
+                          foreach($player->inventory as $slot => $data){
+					if(isset($item) and $item->getID() !== $data->getID()){
+						continue;
+					}
+					$player->setSlot($slot, BlockAPI::getItem(AIR, 0, 0));
          
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
@@ -223,7 +228,8 @@ class IsnCTF implements Plugin{
 			   }
 			   
 			   foreach($this->items as $id => $count){
-				$player->setSlot(0);}
+				$player->addItem((int)$id, 0, (int)$count);}
+			   
 			   break;
 		
                         case "player.block.place":
