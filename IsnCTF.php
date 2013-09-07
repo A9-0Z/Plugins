@@ -272,6 +272,7 @@ class IsnCTF implements Plugin{
       
                         case "player.death":
                         	safe_var_dump($data);
+                        break;
       
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
