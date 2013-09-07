@@ -233,8 +233,8 @@ class IsnCTF implements Plugin{
 			   break;
 		
 		        case "player.block.break":
-		        	global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
-	
+		        	global $Red,$Blue,$BlueCount,$RedCount,$RedSC,$BlueSC;
+	        $username= $this->api->player->get($data->iusername);
 		$target = $data["target"];
 		if ($target->getID() === 35){ 
 			if ($target->getMetadata() === 14){ 
@@ -261,11 +261,11 @@ class IsnCTF implements Plugin{
 		        break;
 		
                         case "player.block.place":
-                           global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
+                           global $Red,$Blue,$BlueCount,$RedCount,$player,$RedSC,$BlueSC;
                            
       $target = $data["block"];
       $item = $data["item"];
-
+      $username= $this->api->player->get($data->iusername);
       if ($item->getID() === 35){ 
       	if ($item->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
@@ -276,7 +276,10 @@ class IsnCTF implements Plugin{
                 if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
+                	
                 	 array_push($GLOBALS['BlueSC'],$username);
+                	 usleep(5);
+                	 return false;
                     }}	
                 }
                 
@@ -294,6 +297,8 @@ class IsnCTF implements Plugin{
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
+                	usleep(5);
+                	return false;
                 
                 }}}
              }
@@ -302,8 +307,9 @@ class IsnCTF implements Plugin{
       
       
 			case "player.interact":
-			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
+			   global $Red,$Blue,$BlueCount,$RedCount;	
 			
+      $username= $this->api->player->get($data->iusername);
       $player = $this->api->player->getbyEID($data["entity"]->eid);
       $target = $this->api->player->getbyEID($data["targetentity"]->eid);
      /* if($source != instanceof Player or $target != instanceof Player) {
