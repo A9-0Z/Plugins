@@ -236,26 +236,28 @@ class IsnCTF implements Plugin{
 		        	global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
 	
 		$target = $data["target"];
-		if ($target->getID() === 35){ $this->api->chat->broadcast("ID");
-			if ($target->getMetadata() === 14){ $this->api->chat->broadcast("META");
-			  $search = array_search($username,$Blue);
-                           if ($search !== FALSE){return true;
+		if ($target->getID() === 35){ 
+			if ($target->getMetadata() === 14){ 
+			  $search = array_search($GLOBALS['username'],$GLOBALS{'Blue']);
+                           if ($search !== FALSE){
                            $this->api->chat->broadcast("[ISN] " . 'Red Flag Stolen by ' . $username . '!');
+                           return true;
                            }
-                           if ($search === FALSE){ $this->api->chat->broadcast("Search FALSE");
+                           if ($search === FALSE){ 
                            	return false;
                            }
 			}
 			if ($target->getMetadata() === 11){
-				$search = array_search($username,$Red);
-                           if ($search !== FALSE){return true;
-                           $this->api->chat->broadcast("[ISN] " . 'Blue Flag Stolen by ' . $username . '!');
+				$search = array_search($GLOBALS['username'],$GLOBALS{'Red']);
+                           if ($search !== FALSE){
+                           $this->api->chat->broadcast("[ISN] " . 'Blue Flag Stolen by ' . $username . '!'); 
+                           return true;
                            }
                            if ($search === FALSE){return false;
                            }
 			}
-		if ($target->getID() !== 35){ $this->api->chat->broadcast("FALSE aint workin");
-			return false;}}
+		} if ($target->getID() !== 35){ $this->api->chat->broadcast("FALSE aint workin");
+			return false;}
 		        break;
 		
                         case "player.block.place":
