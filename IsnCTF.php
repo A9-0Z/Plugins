@@ -153,9 +153,9 @@ class IsnCTF implements Plugin{
     	        $GLOBALS['BlueSCount']= count($BlueSC);
                 $GLOBALS['RedSCount']= count($RedSC);
                 $messagesArray = $this->configSC->get("messages");
-                if($RedSC > $BlueSC){$winners = 'The Red Team have won !!';}
-                if($RedSC < $BlueSC){$winners = 'The Blue Team have won !!';}
-                if($RedSC = $BlueSC){$winners = 'Ah Really Guys, a DRAW ?!!';}
+                if($RedSCount > $BlueSCount){$winners = 'The Red Team have won !!';}
+                if($RedSCount < $BlueSCount){$winners = 'The Blue Team have won !!';}
+                if($RedSCount = $BlueSCount){$winners = 'Ah Really Guys, a DRAW ?!!';}
                         $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
                         $this->api->chat->broadcast("[ISN] " . $winners );
@@ -223,7 +223,7 @@ class IsnCTF implements Plugin{
 			   }
 			   
 			   foreach($this->items as $id => $count){
-				$player->addItem((int)$id, 0, (int)$count);}
+				$player->setSlot(0);}
 			   break;
 		
                         case "player.block.place":
@@ -269,12 +269,6 @@ class IsnCTF implements Plugin{
         }
      }                 break;
       
-      
-                        case "player.death":
-                        	$username = $data["player"]->username;
-                        	return false;
-                        	$this->api->console->run("sudo $player spawn");
-                        	break;
       
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
