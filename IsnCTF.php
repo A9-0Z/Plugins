@@ -238,7 +238,7 @@ class IsnCTF implements Plugin{
 		$target = $data["target"];
 		if ($target->getID() === 35){ 
 			if ($target->getMetadata() === 14){ 
-			  $search = array_search($GLOBALS['username'],$GLOBALS{'Blue']);
+			  $search = array_search($GLOBALS['username'],$GLOBALS['Blue']);
                            if ($search !== FALSE){
                            $this->api->chat->broadcast("[ISN] " . 'Red Flag Stolen by ' . $username . '!');
                            return true;
@@ -248,7 +248,7 @@ class IsnCTF implements Plugin{
                            }
 			}
 			if ($target->getMetadata() === 11){
-				$search = array_search($GLOBALS['username'],$GLOBALS{'Red']);
+				$search = array_search($GLOBALS['username'],$GLOBALS['Red']);
                            if ($search !== FALSE){
                            $this->api->chat->broadcast("[ISN] " . 'Blue Flag Stolen by ' . $username . '!'); 
                            return true;
