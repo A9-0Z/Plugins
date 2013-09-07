@@ -53,10 +53,11 @@ class IsnCTF implements Plugin{
 
 
     public function msg() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
     	        $GLOBALS['BlueSCount']= count($BlueSC);
                 $GLOBALS['RedSCount']= count($RedSC);
                 $messagesArray = $this->configSC->get("messages");
-                global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+                
                         $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);
