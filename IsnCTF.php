@@ -233,9 +233,7 @@ class IsnCTF implements Plugin{
 			   break;
 		
                         case "player.block.place":
-                    
-                        	
-                       
+               
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["block"];
