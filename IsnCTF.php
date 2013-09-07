@@ -228,15 +228,15 @@ class IsnCTF implements Plugin{
 		
                         case "player.block.place":
                     
-                        $this->api->chat->broadcast('Function');	
+                        	
                        
                            global $Red,$Blue,$BlueCount,$RedCount,$username,$player,$RedSC,$BlueSC;
                            
       $target = $data["block"];
       $item = $data["item"];
 
-      if ($item->getID() === 35){ $this->api->chat->broadcast('ID');
-      	if ($item->getMetadata() === 14){ $this->api->chat->broadcast('META');
+      if ($item->getID() === 35){ 
+      	if ($item->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
              if ($search !== FALSE){
       		$x = $target->x;
@@ -271,8 +271,10 @@ class IsnCTF implements Plugin{
       
       
                         case "player.death":
-                        	safe_var_dump($data);
-                        break;
+                        	$username = $data["player"]->username;
+                        	return false;
+                        	$this->api->console->run("sudo $player spawn");
+                        	break;
       
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
