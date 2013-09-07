@@ -29,7 +29,8 @@ class IsnCTF implements Plugin{
          public function init(){
          $this->api->addHandler("player.interact", array($this, "eventHandler"));       
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
-         $this->api->addHandler("player.block.place", array($this, "eventHandler"));
+         $this->api->addHandler("player.block.place", array($this, "eventHaandler"));
+         $this->api->addHandler("player.death", array($this, "eventHaandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -39,10 +40,15 @@ class IsnCTF implements Plugin{
          $GLOBALS['BlueSC']= array();
          $GLOBALS['BlueSCount']= count($BlueSC);
          $GLOBALS['RedSCount']= count($RedSC);
+         $GLOBALS['PlayerCount']= count($this->api->player->getAll());
          
          $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
                 $this->interval = $this->configSC->get("interval");
                 $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
+                
+         $this->configST = new Config($this->api->plugin->configPath($this) . "configST.yml", CONFIG_YAML, array('interval' => 1.3, 'messages' => array("Example message")));
+                $this->intervalSt = $this->configSC->get("interval");
+                $this->api->scheduleSt(20 * 60 * $this->intervalSt, array($this, "stop"), array(), false);
          
          $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
@@ -61,6 +67,7 @@ class IsnCTF implements Plugin{
                         $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);
+                      
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
                         
@@ -69,6 +76,115 @@ class IsnCTF implements Plugin{
                 $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
         }
          
+   public function stop() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 5 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop2"), array(), false);
+        }
+   
+   public function stop2() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 4 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop3"), array(), false);
+        }
+   
+   public function stop3() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 3 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop4"), array(), false);
+        }
+    
+    public function stop4() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 2 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop5"), array(), false);
+        }
+    
+    public function stop6() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                if($RedSC > $BlueSC){$winners = 'The Red Team have won !!';}
+                if($RedSC < $BlueSC){$winners = 'The Blue Team have won !!';}
+                if($RedSC = $BlueSC){$winners = 'Ah Really Guys, a DRAW ?!!';}
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
+                        $this->api->chat->broadcast("[ISN] " . $winners );
+                        $this->api->console->run("stop");
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                
+        }
+    
+    public function stop5() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There is 1 minute remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop6"), array(), false);
+        }
          
    public function eventHandler($data, $event)
 	{
@@ -153,6 +269,9 @@ class IsnCTF implements Plugin{
         }
      }                 break;
       
+      
+                        case "player.death":
+                        	safe_var_dump($data);
       
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount,$username,$player;	
