@@ -234,7 +234,7 @@ class IsnCTF implements Plugin{
 		
 		        case "player.block.break":
 		        	global $Red,$Blue,$BlueCount,$RedCount,$RedSC,$BlueSC;
-	        $username= $this->api->player->get($data->iusername);
+	        $username = $data["player"]->username;
 		$target = $data["target"];
 		if ($target->getID() === 35){ 
 			if ($target->getMetadata() === 14){ 
@@ -265,7 +265,7 @@ class IsnCTF implements Plugin{
                            
       $target = $data["block"];
       $item = $data["item"];
-      $username= $this->api->player->get($data->iusername);
+      $GLOBALS['username']= $this->api->player->get($data->iusername);
       if ($item->getID() === 35){ 
       	if ($item->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
