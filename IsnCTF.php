@@ -260,7 +260,7 @@ class IsnCTF implements Plugin{
 		        	$search2 = array_search($GLOBALS['username'],$GLOBALS['Red']);
                                 if ($search2 !== FALSE){
                                 	 $player->setArmor(2, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
-                                }
+                                }}
 		        	break;
 		
 		        case "player.block.break":
