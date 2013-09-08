@@ -31,6 +31,7 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
          $this->api->addHandler("player.block.place", array($this, "eventHandler"));
          $this->api->addHandler("player.block.break", array($this, "eventHandler"));
+         $this->api->addHandler("player.equipment.change", array($this, "eventHandler")); 
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -52,7 +53,6 @@ class IsnCTF implements Plugin{
          
          $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
                         '272' => '1',
-                        '303' => '1',
                         '320' => '5'));
                         $this->items = $this->api->plugin->readYAML($this->api->plugin->configPath($this). "items.yml");
          }
@@ -223,21 +223,25 @@ class IsnCTF implements Plugin{
                          
 			   if ($RedCount < $BlueCount){
 		       array_push($GLOBALS['Red'],$username);
-			      $player->addItem((int)298, 0, (int)1);
-			      $player->addItem((int)300, 0, (int)1);
+			      $player->setArmor($slot, BlockAPI::getItem(LEATHER_CAP, 0, 0));
+			      $player->setArmor($slot, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
 			      $username->sendChat('You are now a member of team Red !');
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-	                $send === true;
+	               
 			      $player->setArmor($slot, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
 			   
 			   foreach($this->items as $id => $count){
 				$player->addItem((int)$id, 0, (int)$count);}
-			   
+			        $player->setArmor($slot, BlockAPI::getItem(CHAIN_CHESTPLATE, 0, 0));
 			   break;
+		
+		        case "player.equipment.change":
+		        	return false;
+		        	break;
 		
 		        case "player.block.break":
 		        	global $Red,$Blue,$BlueCount,$RedCount,$RedSC,$BlueSC;
