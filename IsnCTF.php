@@ -279,7 +279,7 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	 return false;
+                	 $level->setBlockRaw(new Vector3(64, 64, 64), $air, false, true);
                     }}	
                 }
                 
@@ -298,7 +298,7 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 	usleep(5);
-                	return false;
+                	$level->setBlockRaw(new Vector3(64, 64, 64), $air, false, true);
                 
                 }}}
              }
