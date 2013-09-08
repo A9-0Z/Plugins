@@ -200,6 +200,12 @@ class IsnCTF implements Plugin{
 						continue;
 					}
 					$player->setSlot($slot, BlockAPI::getItem(AIR, 0, 0));}
+					
+					foreach($player->armor as $slot => $data){
+					if(isset($item) and $item->getID() !== $data->getID()){
+						continue;
+					}
+					$player->setArmor($slot, BlockAPI::getItem(AIR, 0, 0));}
          
          $GLOBALS['RedCount']= count($Red);
          $GLOBALS['BlueCount']= count($Blue);
@@ -223,7 +229,8 @@ class IsnCTF implements Plugin{
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-			      $player->setArmor(310, 0);
+	                $send === true;
+			      $player->setArmor(0, 310, $send);
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
 			   
@@ -298,7 +305,9 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 	usleep(5);
-                	 $pos->level->setBlockRaw(new Vector3($x + $offset[0], $y + $offset[1], $z + $offset[2]), $b, false);
+                	$send = true;
+                	$air = new AirBlock();
+                	 $level->setBlockRaw(new Vector3($x, $y, $z), $air, false, $send);
                 
                 }}}
              }
