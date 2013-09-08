@@ -44,6 +44,7 @@ class IsnCTF implements Plugin{
          $GLOBALS['BlueSCount']= count($BlueSC);
          $GLOBALS['RedSCount']= count($RedSC);
          $GLOBALS['PlayerCount']= count($this->api->player->getAll());
+         $GLOBALS['level']= $this->api->level->getDefault();
          
          $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
                 $this->interval = $this->configSC->get("interval");
@@ -316,7 +317,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
                 	
-                	$player->level->setBlock(new Vector3(66, 65, 64), BlockAPI::getItem(AIR, 0, 0));
+                	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), BlockAPI::getItem(AIR, 0, 0));
                         
                            
                     }}	
