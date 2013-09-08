@@ -317,7 +317,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
                 	
-                	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), BlockAPI::getItem(AIR, 0, 0));
+                	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), BlockAPI::getBlock(AIR, 0, 0));
                         
                            
                     }}	
@@ -339,7 +339,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['RedSC'],$username);
                 	usleep(5);
                 	
-                	 
+                	 $GLOBALS['level']->setBlock(new Vector3(66, 65, 64), BlockAPI::getBlock(AIR, 0, 0));
                 }}}
              }
         }
