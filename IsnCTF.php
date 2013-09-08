@@ -244,13 +244,16 @@ class IsnCTF implements Plugin{
                          
 			   if ($RedCount < $BlueCount){
 		       array_push($GLOBALS['Red'],$username);
+		              $this->api->console->run("spawnpoint $username 127 68 156");
+		              $this->api->console->run("sudo $username spawn");
 			      $player->setArmor(0, BlockAPI::getItem(LEATHER_CAP, 0, 0));
 			      $player->setArmor(2, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
 			      $username->sendChat('You are now a member of team Red !');
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-	               
+	                      $this->api->console->run("spawnpoint $username 126 68 93");
+	                      $this->api->console->run("sudo $username spawn");
 			      $player->setArmor(0, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
@@ -267,10 +270,12 @@ class IsnCTF implements Plugin{
 		        	$search = array_search($GLOBALS['username'],$GLOBALS['Blue']);
                                 if ($search !== FALSE){
                                 	$player->setArmor(0, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
+                                	$this->api->console->run("spawnpoint $username 126 68 93");
                                 }
                                 $search2 = array_search($GLOBALS['username'],$GLOBALS['Red']);
                                 if ($search2 !== FALSE){
                                 	 $player->setArmor(0, BlockAPI::getItem(LEATHER_CAP, 0, 0));
+                                	 
                                 }
 		        }
 		        if ($data["slot1"] === 255){
@@ -328,7 +333,7 @@ class IsnCTF implements Plugin{
       		$x = $target->x;
                 $y = $target->y;
                 $z = $target->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
+                if(118 <= $x and $x <= 120){if(64<= $y and $y <= 66){if(51<= $z and $z <= 53){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	
@@ -336,7 +341,7 @@ class IsnCTF implements Plugin{
                 	 
                 	
                 	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());
-                        
+                        $this->api->level->getDefault()->setBlock(new Vector3((int) 118, (int) 65, (int) 145), new WoolBlock(14));
                            
                     }}	
                 }
@@ -351,13 +356,13 @@ class IsnCTF implements Plugin{
       		$x = $target->x;
                 $y = $target->y;
                 $z = $target->z;
-                if(65 <= $x and $x <= 67){if(64<= $y and $y <= 66){if(63<= $z and $z <= 65){
+                if(134 <= $x and $x <= 136){if(64<= $y and $y <= 66){if(145<= $z and $z <= 147){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
                 $this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());	
-                	
+                $this->api->level->getDefault()->setBlock(new Vector3((int) 134, (int) 65, (int) 103), new WoolBlock(11));	
                 }}}
              }
         }
