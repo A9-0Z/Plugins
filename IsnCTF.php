@@ -241,8 +241,26 @@ class IsnCTF implements Plugin{
 			   break;
 		
 		        case "player.armor":
-		        	safe_var_dump($data);
-		        	return false;
+		        $username = $data["player"]->username;
+		        $player = $data["player"];
+		        if ($data["slot0"] === 255){
+		        	$search = array_search($GLOBALS['username'],$GLOBALS['Blue']);
+                                if ($search !== FALSE){
+                                	$player->setArmor(0, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
+                                }
+                                $search2 = array_search($GLOBALS['username'],$GLOBALS['Red']);
+                                if ($search2 !== FALSE){
+                                	 $player->setArmor(0, BlockAPI::getItem(LEATHER_CAP, 0, 0));
+                                }
+		        }
+		        if ($data["slot1"] === 255){
+		        	$player->setArmor(1, BlockAPI::getItem(CHAIN_CHESTPLATE, 0, 0));
+		        }
+		        if ($data["slot2"] === 255){
+		        	$search2 = array_search($GLOBALS['username'],$GLOBALS['Red']);
+                                if ($search2 !== FALSE){
+                                	 $player->setArmor(2, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
+                                }
 		        	break;
 		
 		        case "player.block.break":
@@ -296,7 +314,13 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	 $level->setBlockRaw(new Vector3(64, 64, 64), $air, false, true);
+                	  $player->dataPacket(MC_UPDATE_BLOCK, array(
+                          64 => $index[0],
+                          64 => $index[1],
+                          64 => $index[2],
+                          255 => $block->getID(),
+                          
+                           ));
                     }}	
                 }
                 
