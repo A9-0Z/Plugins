@@ -316,7 +316,7 @@ class IsnCTF implements Plugin{
                 	 usleep(5);
                 	 $this->level->setBlock($item, new AirBlock(), true, false, true);
                           
-                           ));
+                           
                     }}	
                 }
                 
