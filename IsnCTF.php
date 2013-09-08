@@ -86,7 +86,7 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 
                         $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'There are 5 minutes remaining!');
+                        $this->api->chat->broadcast("[ISN] " . 'There are 10 minutes remaining!');
                         
                       
                         if ($this->nr < count($messagesArray)-1) {
@@ -94,10 +94,46 @@ class IsnCTF implements Plugin{
                         
                         }
                 
-                $this->api->schedule(20 * 60 * 1, array($this, "stop2"), array(), false);
+                $this->api->schedule(20 * 60 * 2, array($this, "stop2"), array(), false);
         }
    
    public function stop2() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 8 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 2, array($this, "stop3"), array(), false);
+        }
+   
+   public function stop3() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 6 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 2, array($this, "stop4"), array(), false);
+        }
+    
+    public function stop4() {
     	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
     	        $GLOBALS['BlueSCount']= count($BlueSC);
                 $GLOBALS['RedSCount']= count($RedSC);
@@ -112,43 +148,7 @@ class IsnCTF implements Plugin{
                         
                         }
                 
-                $this->api->schedule(20 * 60 * 1, array($this, "stop3"), array(), false);
-        }
-   
-   public function stop3() {
-    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-    	        $GLOBALS['BlueSCount']= count($BlueSC);
-                $GLOBALS['RedSCount']= count($RedSC);
-                $messagesArray = $this->configSC->get("messages");
-                
-                        $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'There are 3 minutes remaining!');
-                        
-                      
-                        if ($this->nr < count($messagesArray)-1) {
-                                $this->nr++;
-                        
-                        }
-                
-                $this->api->schedule(20 * 60 * 1, array($this, "stop4"), array(), false);
-        }
-    
-    public function stop4() {
-    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-    	        $GLOBALS['BlueSCount']= count($BlueSC);
-                $GLOBALS['RedSCount']= count($RedSC);
-                $messagesArray = $this->configSC->get("messages");
-                
-                        $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'There are 2 minutes remaining!');
-                        
-                      
-                        if ($this->nr < count($messagesArray)-1) {
-                                $this->nr++;
-                        
-                        }
-                
-                $this->api->schedule(20 * 60 * 1, array($this, "stop5"), array(), false);
+                $this->api->schedule(20 * 60 * 2, array($this, "stop5"), array(), false);
         }
     
     public function stop6() {
@@ -178,6 +178,24 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 
                         $message = $messagesArray[$this->nr];
+                        $this->api->chat->broadcast("[ISN] " . 'There are 2 minutes remaining!');
+                        
+                      
+                        if ($this->nr < count($messagesArray)-1) {
+                                $this->nr++;
+                        
+                        }
+                
+                $this->api->schedule(20 * 60 * 1, array($this, "stop7"), array(), false);
+        }
+         
+      public function stop7() {
+    	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
+    	        $GLOBALS['BlueSCount']= count($BlueSC);
+                $GLOBALS['RedSCount']= count($RedSC);
+                $messagesArray = $this->configSC->get("messages");
+                
+                        $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . 'There is 1 minute remaining!');
                         
                       
@@ -187,7 +205,7 @@ class IsnCTF implements Plugin{
                         }
                 
                 $this->api->schedule(20 * 60 * 1, array($this, "stop6"), array(), false);
-        }
+        }    
          
    public function eventHandler($data, $event)
 	{
@@ -317,7 +335,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 
                 	
-                	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new GlowstoneBlock());
+                	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());
                         
                            
                     }}	
@@ -338,7 +356,7 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
-                $this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new GlowstoneBlock());	
+                $this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());	
                 	
                 }}}
              }
