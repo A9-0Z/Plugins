@@ -297,8 +297,8 @@ class IsnCTF implements Plugin{
 	         		break;
 		
                         case "player.block.place":
-                           global $Red,$Blue,$BlueCount,$RedCount,$player,$RedSC,$BlueSC;
-                           
+                           global $Red,$Blue,$BlueCount,$RedCount,$RedSC,$BlueSC;
+      $GLOBALS['player']= $data;                     
       $target = $data["block"];
       $item = $data["item"];
       $username = $data["player"]->username;
@@ -315,8 +315,8 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	$level = $this_>level;
-                	$level->setBlock(new Vector3(64, 64, 64), BlockAPI::getItem(AIR, 0, 0));
+                	
+                	$player->level->setBlock(new Vector3(64, 64, 64), BlockAPI::getItem(AIR, 0, 0));
                         
                            
                     }}	
