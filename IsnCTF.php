@@ -223,7 +223,7 @@ class IsnCTF implements Plugin{
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-			      $player->setArmor(310, 0, 1);
+			      $player->setArmor(310, 0);
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
 			   
