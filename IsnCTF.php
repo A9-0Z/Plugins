@@ -153,8 +153,8 @@ class IsnCTF implements Plugin{
     
     public function stop6() {
     	global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-    	        $GLOBALS['BlueSCount']= count($BlueSC);
-                $GLOBALS['RedSCount']= count($RedSC);
+    	        $GLOBALS['BlueSCount']= count($GLOBALS['BlueSC']);
+                $GLOBALS['RedSCount']= count($GLOBALS['RedSC']);
                 $messagesArray = $this->configSC->get("messages");
                 if($GLOBALS['RedSCount'] > $GLOBALS['BlueSCount']){$winners = 'The Red Team have won !!';}
                 if($GLOBALS['RedSCount'] < $GLOBALS['BlueSCount']){$winners = 'The Blue Team have won !!';}
@@ -315,7 +315,7 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
-                	 usleep(5);
+                	 
                 	
                 	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), new AirBlock());
                         
@@ -337,7 +337,7 @@ class IsnCTF implements Plugin{
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
-                	usleep(5);
+                
                 	
                 	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), new AirBlock());
                 }}}
