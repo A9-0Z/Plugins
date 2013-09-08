@@ -315,7 +315,7 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	 $this->level->setBlock($target, new AirBlock(), true, false, true);
+                	 $this->level->setBlock(BlockAPI::getItem(WOOL, 14, 0), new AirBlock(), true, false, true);
                           
                            
                     }}	
@@ -336,10 +336,8 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 	usleep(5);
-                	$send = true;
-                	$air = new AirBlock();
-                	 $level->setBlockRaw(new Vector3($x, $y, $z), $air, false, $send);
-                
+                	
+                	 
                 }}}
              }
         }
