@@ -252,8 +252,8 @@ class IsnCTF implements Plugin{
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-	                      $player->setSpawn(126 68 93);
-	                      $player->teleport(126 68 93);
+	                      $player->setSpawn(126, 68, 93);
+	                      $player->teleport(126, 68, 93);
 			      $player->setArmor(0, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
