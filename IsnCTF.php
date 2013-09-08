@@ -158,7 +158,7 @@ class IsnCTF implements Plugin{
                 $messagesArray = $this->configSC->get("messages");
                 if($GLOBALS['RedSCount'] > $GLOBALS['BlueSCount']){$winners = 'The Red Team have won !!';}
                 if($GLOBALS['RedSCount'] < $GLOBALS['BlueSCount']){$winners = 'The Blue Team have won !!';}
-                if($GLOBALS['RedSCount'] = $GLOBALS['BlueSCount']){$winners = 'Ah Really Guys, a DRAW ?!!';}
+                if($GLOBALS['RedSCount'] === $GLOBALS['BlueSCount']){$winners = 'Ah Really Guys, a DRAW ?!!';}
                         $message = $messagesArray[$this->nr];
                         $this->api->chat->broadcast("[ISN] " . $winners );
                         $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
@@ -317,7 +317,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 
                 	
-                	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), new AirBlock());
+                	$GLOBALS['level']->setBlock(new Vector3($x, $y, $z), new AirBlock());
                         
                            
                     }}	
