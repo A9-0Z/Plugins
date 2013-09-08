@@ -223,24 +223,24 @@ class IsnCTF implements Plugin{
                          
 			   if ($RedCount < $BlueCount){
 		       array_push($GLOBALS['Red'],$username);
-			      $player->setArmor($slot, BlockAPI::getItem(LEATHER_CAP, 0, 0));
-			      $player->setArmor($slot, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
+			      $player->setArmor(0, BlockAPI::getItem(LEATHER_CAP, 0, 0));
+			      $player->setArmor(2, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
 			      $username->sendChat('You are now a member of team Red !');
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
 	               
-			      $player->setArmor($slot, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
+			      $player->setArmor(0, BlockAPI::getItem(DIAMOND_HELMET, 0, 0));
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
 			   
 			   foreach($this->items as $id => $count){
 				$player->addItem((int)$id, 0, (int)$count);}
-			        $player->setArmor($slot, BlockAPI::getItem(CHAIN_CHESTPLATE, 0, 0));
+			        $player->setArmor(1, BlockAPI::getItem(CHAIN_CHESTPLATE, 0, 0));
 			   break;
 		
 		        case "player.equipment.change":
-		        	return false;
+		        	safe_var_dump($data);
 		        	break;
 		
 		        case "player.block.break":
