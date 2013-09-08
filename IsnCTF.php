@@ -31,7 +31,7 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
          $this->api->addHandler("player.block.place", array($this, "eventHandler"));
          $this->api->addHandler("player.block.break", array($this, "eventHandler"));
-         $this->api->addHandler("player.equipment.change", array($this, "eventHandler"));
+         $this->api->addHandler("player.armor", array($this, "eventHandler"));
          $this->api->addHandler("player.drop", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
@@ -240,8 +240,9 @@ class IsnCTF implements Plugin{
 			        $player->setArmor(1, BlockAPI::getItem(CHAIN_CHESTPLATE, 0, 0));
 			   break;
 		
-		        case "player.equipment.change":
+		        case "player.armor":
 		        	safe_var_dump($data);
+		        	return false;
 		        	break;
 		
 		        case "player.block.break":
