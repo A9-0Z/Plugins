@@ -245,7 +245,7 @@ class IsnCTF implements Plugin{
 			   if ($RedCount < $BlueCount){
 		       array_push($GLOBALS['Red'],$username);
 		              $this->api->console->run("spawnpoint $username 127 68 156");
-		              $this->api->console->run("sudo $username spawn");
+		              $player->teleport(
 			      $player->setArmor(0, BlockAPI::getItem(LEATHER_CAP, 0, 0));
 			      $player->setArmor(2, BlockAPI::getItem(LEATHER_PANTS, 0, 0));
 			      $username->sendChat('You are now a member of team Red !');
@@ -326,13 +326,15 @@ class IsnCTF implements Plugin{
       $target = $data["block"];
       $item = $data["item"];
       $username = $data["player"]->username;
-      if ($item->getID() === 35){ 
-      	if ($item->getMetadata() === 14){ 
-             $search = array_search($username,$Blue);
-             if ($search !== FALSE){
-      		$x = $target->x;
+     if ($item->getID() === 35){ 
+      	        $x = $target->x;
                 $y = $target->y;
                 $z = $target->z;
+      	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());
+      	if ($item->getMetadata() === 14){  $this->api->level->getDefault()->setBlock(new Vector3((int) 118, (int) 65, (int) 145), new WoolBlock(14));
+             $search = array_search($username,$Blue);
+             if ($search !== FALSE){
+
                 if(118 <= $x and $x <= 120){if(64<= $y and $y <= 66){if(51<= $z and $z <= 53){
                         $this->api->chat->broadcast("[ISN] " . 'Blue Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
@@ -340,29 +342,29 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 
                 	
-                	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());
-                        $this->api->level->getDefault()->setBlock(new Vector3((int) 118, (int) 65, (int) 145), new WoolBlock(14));
+                	
+                       
                            
                     }}	
                 }
                 
           }
      }
-}
-        if ($item->getID() === 35){ 
+
+       
       	if ($item->getMetadata() === 11){
              $search = array_search($username,$Red);
-             if ($search !== FALSE){
+             if ($search !== FALSE){ $this->api->level->getDefault()->setBlock(new Vector3((int) 134, (int) 66, (int) 103), new WoolBlock(14));
       		$x = $target->x;
                 $y = $target->y;
                 $z = $target->z;
-                if(134 <= $x and $x <= 136){if(64<= $y and $y <= 66){if(145<= $z and $z <= 147){
+                if(118 <= $x and $x <= 120){if(64 <= $y and $y <= 66){if(102 <= $z and $z <= 104){
                         $this->api->chat->broadcast("[ISN] " . 'Red Team Scored !');	
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
-                $this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new AirBlock());	
-                $this->api->level->getDefault()->setBlock(new Vector3((int) 134, (int) 65, (int) 103), new WoolBlock(11));	
+               	
+                 	
                 }}}
              }
         }
