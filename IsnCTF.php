@@ -317,7 +317,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 
                 	
-                	$GLOBALS['level']->setBlock(new Vector3($x, $y, $z), new AirBlock());
+                	$this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new GlowstoneBlock());
                         
                            
                     }}	
@@ -326,7 +326,7 @@ class IsnCTF implements Plugin{
           }
      }
 }
-        if ($item->getID() === 35){
+        if ($item->getID() === 35){ 
       	if ($item->getMetadata() === 11){
              $search = array_search($username,$Red);
              if ($search !== FALSE){
@@ -338,8 +338,8 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 
+                $this->api->level->getDefault()->setBlock(new Vector3((int) $x, (int) $y, (int) $z), new GlowstoneBlock());	
                 	
-                	$GLOBALS['level']->setBlock(new Vector3($x, $y, $z), new AirBlock());
                 }}}
              }
         }
