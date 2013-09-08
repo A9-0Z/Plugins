@@ -315,8 +315,9 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	 $this->level->setBlock(BlockAPI::getItem(WOOL, 14, 0), new AirBlock(), true, false, true);
-                          
+                	$level = $this_>level;
+                	$level->setBlock(new Vector3(64, 64, 64), BlockAPI::getItem(AIR, 0, 0));
+                        
                            
                     }}	
                 }
