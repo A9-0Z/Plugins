@@ -21,6 +21,7 @@ A9-0Z samuelandrewmark@gmail.com
 */
 class IsnCTF implements Plugin{
    private $api, $this, $path, $server, $config;
+   public $level;
    private $nr = 0;
    private $interval;
     public function __construct(ServerAPI $api, $server = false){
@@ -314,7 +315,7 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	 $this->level->setBlock($item, new AirBlock(), true, false, true);
+                	 $this->level->setBlock($target, new AirBlock(), true, false, true);
                           
                            
                     }}	
