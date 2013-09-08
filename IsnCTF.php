@@ -31,7 +31,8 @@ class IsnCTF implements Plugin{
          $this->api->addHandler("player.spawn", array($this, "eventHandler"));        
          $this->api->addHandler("player.block.place", array($this, "eventHandler"));
          $this->api->addHandler("player.block.break", array($this, "eventHandler"));
-         $this->api->addHandler("player.equipment.change", array($this, "eventHandler")); 
+         $this->api->addHandler("player.equipment.change", array($this, "eventHandler"));
+         $this->api->addHandler("player.drop", array($this, "eventHandler"));
                 
          $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
          $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
@@ -270,6 +271,10 @@ class IsnCTF implements Plugin{
 		} if ($target->getID() !== 35){
 			return false;}
 		        break;
+		
+	         	case "player.drop":
+	         		return false;
+	         		break;
 		
                         case "player.block.place":
                            global $Red,$Blue,$BlueCount,$RedCount,$player,$RedSC,$BlueSC;
