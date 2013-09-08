@@ -256,7 +256,7 @@ class IsnCTF implements Plugin{
                            if ($search === FALSE){return false;
                            }
 			}
-		} if ($target->getID() !== 35){ $this->api->chat->broadcast("FALSE aint workin");
+		} if ($target->getID() !== 35){
 			return false;}
 		        break;
 		
@@ -265,7 +265,7 @@ class IsnCTF implements Plugin{
                            
       $target = $data["block"];
       $item = $data["item"];
-      $GLOBALS['username']= $this->api->player->get($data->iusername);
+      $username = $data["player"]->username;
       if ($item->getID() === 35){ 
       	if ($item->getMetadata() === 14){ 
              $search = array_search($username,$Blue);
@@ -309,7 +309,7 @@ class IsnCTF implements Plugin{
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount;	
 			
-      $username= $this->api->player->get($data->iusername);
+      $username = $data["player"]->username;
       $player = $this->api->player->getbyEID($data["entity"]->eid);
       $target = $this->api->player->getbyEID($data["targetentity"]->eid);
      /* if($source != instanceof Player or $target != instanceof Player) {
