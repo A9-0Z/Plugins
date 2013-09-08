@@ -223,7 +223,7 @@ class IsnCTF implements Plugin{
 			   } 
 			   if ($RedCount >= $BlueCount){
 	                array_push($GLOBALS['Blue'],$username);
-			      $player->addItem((int)310, 0, (int)1);
+			      $player->setArmor(310, 0, 1);
 			      $username->sendChat('You are now a member of team Blue !');
 			   }
 			   
@@ -298,7 +298,7 @@ class IsnCTF implements Plugin{
                 	$this->api->chat->broadcast('Flag Captured by ' . $username . ' !');
                 	 array_push($GLOBALS['RedSC'],$username);
                 	usleep(5);
-                	$level->setBlockRaw(new Vector3(64, 64, 64), $air, false, true);
+                	 $pos->level->setBlockRaw(new Vector3($x + $offset[0], $y + $offset[1], $z + $offset[2]), $b, false);
                 
                 }}}
              }
