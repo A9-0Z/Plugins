@@ -156,12 +156,12 @@ class IsnCTF implements Plugin{
     	        $GLOBALS['BlueSCount']= count($BlueSC);
                 $GLOBALS['RedSCount']= count($RedSC);
                 $messagesArray = $this->configSC->get("messages");
-                if($RedSCount > $BlueSCount){$winners = 'The Red Team have won !!';}
-                if($RedSCount < $BlueSCount){$winners = 'The Blue Team have won !!';}
-                if($RedSCount = $BlueSCount){$winners = 'Ah Really Guys, a DRAW ?!!';}
+                if($GLOBALS['RedSCount'] > $GLOBALS['BlueSCount']){$winners = 'The Red Team have won !!';}
+                if($GLOBALS['RedSCount'] < $GLOBALS['BlueSCount']){$winners = 'The Blue Team have won !!';}
+                if($GLOBALS['RedSCount'] = $GLOBALS['BlueSCount']){$winners = 'Ah Really Guys, a DRAW ?!!';}
                         $message = $messagesArray[$this->nr];
-                        $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
                         $this->api->chat->broadcast("[ISN] " . $winners );
+                        $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
                         $this->api->console->run("stop");
                         if ($this->nr < count($messagesArray)-1) {
                                 $this->nr++;
@@ -349,7 +349,7 @@ class IsnCTF implements Plugin{
 			case "player.interact":
 			   global $Red,$Blue,$BlueCount,$RedCount;	
 			
-      $username = $data["player"]->username;
+      
       $player = $this->api->player->getbyEID($data["entity"]->eid);
       $target = $this->api->player->getbyEID($data["targetentity"]->eid);
      /* if($source != instanceof Player or $target != instanceof Player) {
