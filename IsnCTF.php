@@ -314,11 +314,7 @@ class IsnCTF implements Plugin{
                 	
                 	 array_push($GLOBALS['BlueSC'],$username);
                 	 usleep(5);
-                	  $player->dataPacket(MC_UPDATE_BLOCK, array(
-                          64 => $index[0],
-                          64 => $index[1],
-                          64 => $index[2],
-                          255 => $block->getID(),
+                	 $this->level->setBlock($item, new AirBlock(), true, false, true);
                           
                            ));
                     }}	
