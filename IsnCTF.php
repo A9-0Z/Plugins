@@ -339,7 +339,7 @@ class IsnCTF implements Plugin{
                 	 array_push($GLOBALS['RedSC'],$username);
                 
                 	
-                	$GLOBALS['level']->setBlock(new Vector3(66, 65, 64), new AirBlock());
+                	$GLOBALS['level']->setBlock(new Vector3($x, $y, $z), new AirBlock());
                 }}}
              }
         }
