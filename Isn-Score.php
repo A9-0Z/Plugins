@@ -31,3 +31,27 @@ class IsnCTF implements Plugin{
     }
 
     public function init(){
+$this->api->addHandler("player.death", array($this, "eventHandler"));
+$this->path = $this->api->plugin->configPath($this);
+$this->score = new Config($this->path . "scores.yml", CONFIG_YAML, array("Blue" => 0, "Red" => 0));
+$this->score = $this->api->plugin->readYAML($this->path . "scores.yml");
+}
+
+public function player.death(){
+                            global $Red,$Blue,$BlueCount,$RedCount;
+                            $GLOBALS['username']= $this->player->username;
+                            
+                        $searchB = array_search($username,$Blue);
+                        if ($searchB !== FALSE){ $bsc = $this->score->get("Blue"); $this->score->set("Blue", $bsc + 1);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                            
+                        $searchR = array_search($username,$Red);
+                        if ($searchR !== FALSE){ $rsc = $this->score->get("Red"); $this->score->set("Red", $rsc + 1);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                        break;
+}
+public function __destruct(){
+    }
+ }
