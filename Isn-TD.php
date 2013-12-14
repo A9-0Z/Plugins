@@ -146,6 +146,7 @@ class IsnCTF implements Plugin{
                             $this->api->chat->broadcast("[ISN] " . $winners );
                             $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
                             if($this->nr < count($messagesArray)-1) {$this->nr++;}
+                            sleep(5);
                             $this->api->console->run("stop");
                 }
             }
