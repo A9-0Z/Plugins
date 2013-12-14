@@ -37,7 +37,7 @@ $this->score = new Config($this->path . "scores.yml", CONFIG_YAML, array("Blue" 
 $this->score = $this->api->plugin->readYAML($this->path . "scores.yml");
 }
 
-public function player.death(){
+public function player.death () {
                             global $Red,$Blue,$BlueCount,$RedCount;
                             $GLOBALS['username']= $this->player->username;
                             
