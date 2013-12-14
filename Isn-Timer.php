@@ -31,6 +31,8 @@ class IsnCTF implements Plugin{
     }
 
     public function init(){
+        $this->score = plugins->Isn-Score->readYAML(plugins->Isn-Score . "scores.yml");
+        
        $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
             $this->interval = $this->configSC->get("interval");
             $this->api->schedule(20 * 60 * $this->interval, array($this, "msg"), array(), false);
@@ -41,8 +43,8 @@ class IsnCTF implements Plugin{
             
      public function msg() {
         global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-            $GLOBALS['BlueSCount']= count($BlueSC);
-            $GLOBALS['RedSCount']= count($RedSC);
+            $GLOBALS['BlueSCount']= $this->score['Blue'];
+            $GLOBALS['RedSCount']= $this->score['Red'];
             $messagesArray = $this->configSC->get("messages");
                 $message = $messagesArray[$this->nr];
                 $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
@@ -58,8 +60,8 @@ class IsnCTF implements Plugin{
         switch($this->timer) {
             case 0:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There are 10 minutes remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -67,8 +69,8 @@ class IsnCTF implements Plugin{
                 break;
             case 1:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There are 8 minutes remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -76,8 +78,8 @@ class IsnCTF implements Plugin{
                 break;
             case 2:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There are 6 minutes remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -85,8 +87,8 @@ class IsnCTF implements Plugin{
                 break;
             case 3:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There are 4 minutes remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -94,8 +96,8 @@ class IsnCTF implements Plugin{
                 break;
             case 4:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There are 2 minutes remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -103,8 +105,8 @@ class IsnCTF implements Plugin{
                 break;
             case 5:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($BlueSC);
-                    $GLOBALS['RedSCount']= count($RedSC);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                     $message = $messagesArray[$this->nr];
                     $this->api->chat->broadcast("[ISN] " . 'There is 1 minute remaining!');
                     if($this->nr < count($messagesArray)-1) {$this->nr++;}
@@ -112,8 +114,8 @@ class IsnCTF implements Plugin{
                 break;
             case 6:
                 global $BlueSC,$RedSC,$BlueSCount,$RedSCount;
-                    $GLOBALS['BlueSCount']= count($GLOBALS['BlueSC']);
-                    $GLOBALS['RedSCount']= count($GLOBALS['RedSC']);
+                    $GLOBALS['BlueSCount']= $this->score['Blue'];
+                    $GLOBALS['RedSCount']= $this->score['Red'];
                         if($GLOBALS['RedSCount'] > $GLOBALS['BlueSCount']){$winners = 'The Red Team have won !!';}
                         if($GLOBALS['RedSCount'] < $GLOBALS['BlueSCount']){$winners = 'The Blue Team have won !!';}
                         if($GLOBALS['RedSCount'] === $GLOBALS['BlueSCount']){$winners = 'Ah Really Guys, a DRAW ?!!';}
@@ -122,7 +124,7 @@ class IsnCTF implements Plugin{
                             $this->api->chat->broadcast("[ISN] " . 'Match Finished Thanks for Playing!');
                             if($this->nr < count($messagesArray)-1) {$this->nr++;}
                             
-                            $this->api->console->run("stop");
+                            /*$this->api->console->run("stop");*/
                 }
             }
     
