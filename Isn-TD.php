@@ -289,7 +289,7 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
                            return false;
                            }
          
-                           break;}}}
+                           break;}}
          public function __destruct(){
 global $Red,$Blue,$BlueCount,$RedCount;
 unset($GLOBALS['Red']);
