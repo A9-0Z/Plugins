@@ -33,8 +33,8 @@ class IsnCTF implements Plugin{
     public function init(){
         $this->api->addHandler("player.interact", array($this, "eventHandler"));
         $this->api->addHandler("player.spawn", array($this, "eventHandler"));
-        $this->api->addHandler("player.block.place", array($this, "eventHandler"));
-        $this->api->addHandler("player.block.break", array($this, "eventHandler"));
+        $this->api->addHandler("player.quit", array($this, "eventHandler"));
+        $this->api->addHandler("player.death", array($this, "eventHandler"));
         $this->api->addHandler("player.armor", array($this, "eventHandler"));
         $this->api->addHandler("player.drop", array($this, "eventHandler"));
                
@@ -229,13 +229,39 @@ class IsnCTF implements Plugin{
                                 }}
                                 break;
                
-               
+                        case "player.quit":
+                            global $Red,$Blue,$BlueCount,$RedCount;
+                            $GLOBALS['username']= $this->api->player->get($data->iusername);
+                            
+                        $search = array_search($username,$Blue);
+                        if ($search !== FALSE){
+                        $Blue = str_replace($username,'',$Blue);
+                        $GLOBALS['Blue'] = array_filter($Blue);}
+
+                        $search = array_search($username,$Red);
+                        if ($search !== FALSE){
+                        $Red = str_replace($username,'',$Red);
+                        $GLOBALS['Red'] = array_filter($Red);}
+                        break;
                
                          case "player.drop":
                                  return false;
                                  break;
            
-     
+                        case 'player.death':
+                            global $Red,$Blue,$BlueCount,$RedCount;
+                            $GLOBALS['username']= $this->api->player->get($data->iusername);
+                            
+                        $searchB = array_search($username,$Blue);
+                        if ($searchB !== FALSE){  array_push($GLOBALS['BlueSC'],$username);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                            
+                        $searchR = array_search($username,$Red);
+                        if ($searchR !== FALSE){ array_push($GLOBALS['RedSC'],$username);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                        break;
      
                         case "player.interact":
                            global $Red,$Blue,$BlueCount,$RedCount;
