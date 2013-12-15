@@ -38,14 +38,20 @@ class IsnTeam implements Plugin{
         $this->api->addHandler("player.armor", array($this, "eventHandler"));
         $this->api->addHandler("player.drop", array($this, "eventHandler"));
         
+        $this->path = $this->api->plugin->configPath($this);
+        $this->score = new Config($this->path . "scores.yml", CONFIG_YAML, array("Blue" => 0, "Red" => 0));
+        $this->score = $this->api->plugin->readYAML($this->path . "scores.yml");
+        
         $GLOBALS['Red']= array('PlaceHold','PlaceHold1');
         $GLOBALS['Blue']= array('PlaceHold2','Placehold3');
         $GLOBALS['RedCount']= count(isset($Red));
         $GLOBALS['BlueCount']= count(isset($Blue));
         $GLOBALS['RedSC']= array();
         $GLOBALS['BlueSC']= array();
-        $GLOBALS['BlueSCount']= count(isset($BlueSC));
-        $GLOBALS['RedSCount']= count(isset($RedSC));
+        $GLOBALS['BluedCount']= $this->score['Blue'];
+        $GLOBALS['RedsCount']= $this->score['Red'];
+        $GLOBALS['BlueSCount']= (string)$GLOBALS['BluedCount'];
+        $GLOBALS['RedSCount']= (string)$GLOBALS['RedsCount'];
         
         $this->items = new Config($this->api->plugin->configPath($this)."items.yml", CONFIG_YAML, array(
             '272' => '1',
@@ -172,7 +178,23 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
                            return false;
                            }
          
-                           break;}}
+                           break;
+                           
+                           case player.death:
+                            global $Red,$Blue,$BlueCount,$RedCount;
+                            $GLOBALS['username']= $this->player->username;
+                            
+                        $searchB = array_search($username,$Blue);
+                        if ($searchB !== FALSE){ $bsc = $this->score->get("Blue"); $this->score->set("Blue", $bsc + 1);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                            
+                        $searchR = array_search($username,$Red);
+                        if ($searchR !== FALSE){ $rsc = $this->score->get("Red"); $this->score->set("Red", $rsc + 1);
+                            $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
+                            $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
+                            break;
+                            }}
     public function __destruct(){
 global $Red,$Blue,$BlueCount,$RedCount;
 unset($GLOBALS['Red']);
