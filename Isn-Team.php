@@ -183,6 +183,8 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
                            case player.death:
                             global $Red,$Blue,$BlueCount,$RedCount;
                             $GLOBALS['username']= $this->player->username;
+                            $this->api->chat->broadcast("Got here");
+                            safe_var_dump($this->player);
                             
                         $searchB = array_search($username,$Blue);
                         if ($searchB !== FALSE){ $bsc = $this->score->get("Blue"); $this->score->set("Blue", $bsc + 1);
