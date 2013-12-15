@@ -31,7 +31,7 @@ class IsnTimer implements Plugin{
     }
 
     public function init(){
-        $this->path = DATA_PATH."/plugins/Isn-Team/";
+        $this->path = DATA_PATH."/plugins/IsnTeam/";
         $this->score = $this->api->plugin->readYAML($this->path."scores.yml");
         
        $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
