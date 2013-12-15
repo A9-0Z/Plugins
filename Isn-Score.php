@@ -36,8 +36,11 @@ $this->path = $this->api->plugin->configPath($this);
 $this->score = new Config($this->path . "scores.yml", CONFIG_YAML, array("Blue" => 0, "Red" => 0));
 $this->score = $this->api->plugin->readYAML($this->path . "scores.yml");
 }
-
-public function player.death () {
+                    public function eventHandler($data, $event) {
+        global $Red,$Blue,$BlueCount,$RedCount,$username,$player;
+            switch ($event) {
+   
+                   case player.death:
                             global $Red,$Blue,$BlueCount,$RedCount;
                             $GLOBALS['username']= $this->player->username;
                             
