@@ -182,9 +182,9 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
                            
                            case 'player.death':
                             global $Red,$Blue,$BlueCount,$RedCount;
-                            $GLOBALS['username']= $this->player->username;
+                            $GLOBALS['username']= $this->object->username;
                             
-                            safe_var_dump($this);
+                            safe_var_dump($this->object);
                             
                         $searchB = array_search($username,$Blue);
                         if ($searchB !== FALSE){ $bsc = $this->score->get("Blue"); $this->score->set("Blue", $bsc + 1);
