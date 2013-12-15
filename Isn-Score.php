@@ -54,7 +54,7 @@ $this->score = $this->api->plugin->readYAML($this->path . "scores.yml");
                             $this->api->chat->broadcast("[ISN] " . 'Red Team Score = ' . $GLOBALS['RedSCount']);
                             $this->api->chat->broadcast("[ISN] " . 'Blue Team Score = ' . $GLOBALS['BlueSCount']);}
                         break;
-}
+}}
 public function __destruct(){
     }
  }
