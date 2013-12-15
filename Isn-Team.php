@@ -184,7 +184,7 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
                             global $Red,$Blue,$BlueCount,$RedCount;
                             $GLOBALS['username']= $this->object->username;
                             
-                            safe_var_dump($this->object);
+                            safe_var_dump();
                             
                         $searchB = array_search($username,$Blue);
                         if ($searchB !== FALSE){ $bsc = $this->score->get("Blue"); $this->score->set("Blue", $bsc + 1);
