@@ -180,10 +180,10 @@ $this->throwUnhandledErrorException(NOT_OBJECT);
          
                            break;
                            
-                           case player.death:
+                           case 'player.death':
                             global $Red,$Blue,$BlueCount,$RedCount;
                             $GLOBALS['username']= $this->player->username;
-                            $this->api->chat->broadcast("Got here");
+                            
                             safe_var_dump($this->player);
                             
                         $searchB = array_search($username,$Blue);
