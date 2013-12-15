@@ -31,7 +31,8 @@ class IsnTimer implements Plugin{
     }
 
     public function init(){
-        $this->score = plugins->Isn-Score->readYAML(plugins->Isn-Score . "scores.yml");
+        $this->path = DATA_PATH."/plugins/Isn-Score/";
+        $this->score = $this->api->plugin->readYAML($this->path."scores.yml");
         
        $this->configSC = new Config($this->api->plugin->configPath($this) . "configSC.yml", CONFIG_YAML, array('interval' => 1, 'messages' => array("Example message")));
             $this->interval = $this->configSC->get("interval");
