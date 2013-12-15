@@ -1,11 +1,11 @@
 <?php
 /*
 __PocketMine Plugin__
-name=IsnCTF
+name=IsnTimer
 description=Capture the Flag plugin !
 version=1.0
 author=A9_0Z
-class=IsnCTF
+class=IsnTimer
 apiversion=9,10,11,12,13,14,
 */
 /*
@@ -19,7 +19,7 @@ A9-0Z samuelandrewmark@gmail.com
 
 1.0: Initial release
 */
-class IsnCTF implements Plugin{
+class IsnTimer implements Plugin{
     private $api, $this, $path, $server, $config;
     public $level;
     private $nr = 0;
